@@ -2,25 +2,28 @@ package ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance;
 
 import static org.testng.Assert.assertEquals;
 
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.levelup.qa.at.calculator.Calculator;
 
-public class MyCalculatorBeforeAfterMethodHookTest {
+public class MyCalculatorBeforeAfterMethodHookInheritanceTest {
 
     private Calculator MyCalculator;
 
     @BeforeMethod
+    @Override
     public void setUp(){
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterMethodHookTest.class
+        System.out.println("^_^ ^_^ ^_^");
+        System.out.println(String.format("Class: %s, method: %s", this.getClass()
             .getCanonicalName(), "setUp"));
         MyCalculator = new Calculator();
+        System.out.println("this method was override");
     }
 
     @Test
     public void sum2And2() {
-        System.out.println(String.format("Class: %s, test method: %s", MyCalculatorBeforeAfterMethodHookTest.class
+        System.out.println(String.format("Class: %s, test method: %s", this.getClass()
             .getCanonicalName(), "sum2And2"));
         long res = MyCalculator.sum(2, 2);
         assertEquals(res, 4L, "Incorrect");
@@ -28,18 +31,19 @@ public class MyCalculatorBeforeAfterMethodHookTest {
 
     @Test
     public void sum2point0and4point0(){
-        System.out.println(String.format("Class: %s, test method: %s", MyCalculatorBeforeAfterMethodHookTest.class
+        System.out.println(String.format("Class: %s, test method: %s", this.getClass()
             .getCanonicalName(), "sum2point0and4point0"));
         double res = MyCalculator.sum(2.0D, 4.0D);
         assertEquals(res, 6.0D);
     }
 
-    @AfterMethod
-    public void tearDown() {
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterMethodHookTest.class
-            .getCanonicalName(), "tearDown"));
-        MyCalculator = null;
-        System.out.println("=====");
-        System.out.println();
+    @AfterClass
+    @Override
+    public void afterClass(){
+        System.out.println("XD XD XD");
+        System.out.println(String.format("Class: %s, method: %s", this.getClass()
+            .getCanonicalName(), "afterClass"));
+        MyCalculator = new Calculator();
+        System.out.println("this method was override");
     }
 }

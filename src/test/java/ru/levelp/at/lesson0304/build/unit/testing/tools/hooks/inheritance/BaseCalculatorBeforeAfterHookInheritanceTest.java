@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.levelup.qa.at.calculator.Calculator;
 
-public abstract class BaseCalculatorBeforeAfterHookTest {
+public abstract class BaseCalculatorBeforeAfterHookInheritanceTest {
 
     protected Calculator MyCalculator;
 

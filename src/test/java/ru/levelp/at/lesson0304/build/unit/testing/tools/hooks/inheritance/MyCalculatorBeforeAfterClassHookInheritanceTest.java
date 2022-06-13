@@ -2,16 +2,12 @@ package ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance;
 
 import static org.testng.Assert.assertEquals;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import ru.levelup.qa.at.calculator.Calculator;
 
-public class MyCalculatorBeforeAfterSuiteHookTest extends BaseCalculatorBeforeAfterHookTest {
+public class MyCalculatorBeforeAfterClassHookInheritanceTest {
+
+    private Calculator MyCalculator;
 
     @Test
     public void sum2And2() {
