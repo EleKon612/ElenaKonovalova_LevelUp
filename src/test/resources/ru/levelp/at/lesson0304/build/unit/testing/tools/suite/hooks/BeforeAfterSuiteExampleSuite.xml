@@ -3,11 +3,11 @@
 
     <test name="Before After Suite Example Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks.MyCalculatorBeforeAfterSuiteHookTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterSuiteHookTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks.MyCalculatorBeforeAfterClassHookTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterClassHookTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks.MyCalculatorBeforeAfterMethodHookTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterMethodHookTest">
           </class>
       </classes>
     </test>

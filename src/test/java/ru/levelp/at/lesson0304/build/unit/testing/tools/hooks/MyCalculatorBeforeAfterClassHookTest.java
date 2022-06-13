@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks;
+package ru.levelp.at.lesson0304.build.unit.testing.tools.hooks;
 
 import static org.testng.Assert.assertEquals;
 

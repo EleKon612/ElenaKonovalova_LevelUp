@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks;
+package ru.levelp.at.lesson0304.build.unit.testing.tools.hooks;
 
 import static org.testng.Assert.assertEquals;
 
@@ -13,14 +13,16 @@ public class MyCalculatorBeforeAfterMethodHookTest {
 
     @BeforeMethod
     public void setUp(){
-        System.out.println(String.format("Class: %s, method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterMethodTest.class
+        System.out.println(String.format("Class: %s, method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools.hooks
+            .MyCalculatorBeforeAfterMethodHookTest.class
             .getCanonicalName(), "setUp"));
         MyCalculator = new Calculator();
     }
 
     @Test
     public void sum2And2() {
-        System.out.println(String.format("Class: %s, test method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterMethodTest.class
+        System.out.println(String.format("Class: %s, test method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools
+            .hooks.MyCalculatorBeforeAfterMethodHookTest.class
             .getCanonicalName(), "sum2And2"));
         long res = MyCalculator.sum(2, 2);
         assertEquals(res, 4L, "Incorrect");
@@ -28,7 +30,8 @@ public class MyCalculatorBeforeAfterMethodHookTest {
 
     @Test
     public void sum2point0and4point0(){
-        System.out.println(String.format("Class: %s, test method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterMethodTest.class
+        System.out.println(String.format("Class: %s, test method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools
+            .hooks.MyCalculatorBeforeAfterMethodHookTest.class
             .getCanonicalName(), "sum2point0and4point0"));
         double res = MyCalculator.sum(2.0D, 4.0D);
         assertEquals(res, 6.0D);
@@ -36,7 +39,8 @@ public class MyCalculatorBeforeAfterMethodHookTest {
 
     @AfterMethod
     public void tearDown() {
-        System.out.println(String.format("Class: %s, method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterMethodTest.class
+        System.out.println(String.format("Class: %s, method: %s", ru.levelp.at.lesson0304.build.unit.testing.tools.hooks
+            .MyCalculatorBeforeAfterMethodHookTest.class
             .getCanonicalName(), "tearDown"));
         MyCalculator = null;
         System.out.println("=====");

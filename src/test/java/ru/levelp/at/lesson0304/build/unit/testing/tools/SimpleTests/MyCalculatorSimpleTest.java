@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.SimpleTests;
+package ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests;
 
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
