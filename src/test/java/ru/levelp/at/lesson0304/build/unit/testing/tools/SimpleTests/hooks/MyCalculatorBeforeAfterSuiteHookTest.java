@@ -20,6 +20,7 @@ public class MyCalculatorBeforeAfterSuiteTest {
         System.out.println("+++++");
         System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteTest.class
             .getCanonicalName(), "beforeSuite"));
+        System.out.println();
     }
 
     @BeforeClass
@@ -31,6 +32,7 @@ public class MyCalculatorBeforeAfterSuiteTest {
 
     @BeforeMethod
     public void setUp(){
+        System.out.println("<Start of test>");
         System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteTest.class
             .getCanonicalName(), "setUp"));
         MyCalculator = new Calculator();
@@ -57,6 +59,7 @@ public class MyCalculatorBeforeAfterSuiteTest {
         System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteTest.class
             .getCanonicalName(), "tearDown"));
         MyCalculator = null;
+        System.out.println("<End of test>");
         System.out.println("=====");
         System.out.println();
     }
