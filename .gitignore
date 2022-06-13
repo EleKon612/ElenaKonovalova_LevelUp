@@ -10,4 +10,5 @@
 target
 *.DS_store
 .gradle
-build
+build/*
+
