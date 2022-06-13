@@ -1,21 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Before After Suite Example Suite">
-
-    <test name="Before After Suite Example Suite">
-      <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterSuiteHookTest">
-              <methods>
-                  <include name="sum2point0and4point0"/>
-              </methods>
-          </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterClassHookTest">
-          </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterMethodHookTest">
-              <methods>
-                  <exclude name="sum2point0and4point0"/>
-              </methods>
-          </class>
-      </classes>
-    </test>
+<suite name="Suite of Suites Example Suite">
+    
+    <suite-files>
+        <suite-file path="BeforeAfterSuiteExampleSuite.xml"></suite-file>
+        <suite-file path="inheritance/BeforeAfterHookInheritanceExampleSuite.xml"></suite-file>
+        <suite-file path="MethodExclusionInclusionExampleSuite.xml"></suite-file>
+    </suite-files>
 
 </suite>

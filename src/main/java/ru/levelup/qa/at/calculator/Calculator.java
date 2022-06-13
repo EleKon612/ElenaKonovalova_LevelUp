@@ -17,7 +17,7 @@ public class Calculator {
         return a + b;
     }
 
-    public long subtract(long a, long b) {
+    public long sub(long a, long b) {
         return a - b;
     }
 
