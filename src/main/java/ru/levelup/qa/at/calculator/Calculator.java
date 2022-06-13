@@ -14,7 +14,7 @@ public class Calculator {
     }
 
     public double sum(double a, double b) {
-        return a + b;
+        return (a + b);
     }
 
     public long sub(long a, long b) {
@@ -54,15 +54,15 @@ public class Calculator {
     }
 
     public double tg(double a) {
-        return this.sin(a) / this.cos(a);
+        return Math.tan(a);
     }
 
     public double ctg(double a) {
-        return Math.tanh(a);
+        return Math.cos(a)/Math.sin(a);
     }
 
     public double cos(double a) {
-        return Math.sin(a);
+        return Math.cos(a);
     }
 
     public double sin(double a) {

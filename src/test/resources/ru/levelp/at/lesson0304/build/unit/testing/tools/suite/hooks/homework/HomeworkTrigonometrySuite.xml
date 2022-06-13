@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework All Classes Suite">
+
+    <test name="Homework All Classes Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.homework.MyCalculatorHomeworkAllClasses">
+              <methods>
+                  <include name="sinDouble"/>
+                  <include name="cosDouble"/>
+                  <include name="tgDouble"/>
+                  <include name="ctgDouble"/>
+              </methods>
+          </class>
+      </classes>
+    </test>
+
+</suite>
