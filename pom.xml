@@ -27,7 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>ru.levelp.at</groupId>
-            <artifactId>ElenaKonovalova_LevelUp_project_calculator-1.0.jar</artifactId>
+            <artifactId>ElenaKonovalova_LevelUp_project_calculator</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/calculator-1.0.jar</systemPath>
@@ -41,7 +41,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${project.source.encoding}</encoding>
                 </configuration>
             </plugin>
 
@@ -53,6 +53,7 @@
                     <encoding>${project.source.encoding}</encoding>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -67,7 +68,8 @@
                 <configuration>
                     <configLocation>
                         <!--  pay attention to use exact url for checkstyle plugin ruleset  -->
-                        https://raw.githubusercontent.com/khda91/leveup-code-checkers-configurations/main/checkstyle/checkstyle.xml
+                        <!-- https://raw.githubusercontent.com/khda91/leveup-code-checkers-configurations/main/checkstyle/checkstyle.xml -->
+                        ${project.basedir}/checkstyle/checkstyle.xml
                     </configLocation>
                     <encoding>${project.source.encoding}</encoding>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
