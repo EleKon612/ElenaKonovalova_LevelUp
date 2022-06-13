@@ -5,7 +5,7 @@
       <classes>
           <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.MyCalculatorBeforeAfterSuiteHookInheritanceTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.MyCalculatorBeforeAfterClassHookInheritanceTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.MyCalculatorBeforeAfterMethodHookInheritanceTest.MyCalculatorBeforeAfterClassHookInheritanceTest">
           </class>
           <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.MyCalculatorBeforeAfterMethodHookInheritanceTest">
           </class>
