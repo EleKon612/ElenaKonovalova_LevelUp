@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Before After Suite Example Suite">
+
+    <test name="Before After Suite Example Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks.MyCalculatorBeforeAfterSuiteHookTest">
+          </class>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks.MyCalculatorBeforeAfterClassHookTest">
+          </class>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.SimpleTests.hooks.MyCalculatorBeforeAfterMethodHookTest">
+          </class>
+      </classes>
+    </test>
+
+</suite>
