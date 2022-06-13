@@ -15,30 +15,26 @@ public abstract class BaseCalculatorBeforeAfterHookInheritanceTest {
     @BeforeSuite
     public void beforeSuite() {
         System.out.println("+++++");
-        System.out.println(String.format("Class: %s, method: %s", this.getClass()
-            .getCanonicalName(), "beforeSuite"));
+        System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "beforeSuite"));
         System.out.println();
     }
 
     @BeforeClass
     public void beforeClass() {
         System.out.println("*****");
-        System.out.println(String.format("Class: %s, method: %s", this.getClass()
-            .getCanonicalName(), "beforeClass"));
+        System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "beforeClass"));
     }
 
     @BeforeMethod
     public void setUp(){
         System.out.println("<Start of test>");
-        System.out.println(String.format("Class: %s, method: %s", this.getClass()
-            .getCanonicalName(), "setUp"));
+        System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "setUp"));
         MyCalculator = new Calculator();
     }
 
     @AfterMethod
     public void tearDown() {
-        System.out.println(String.format("Class: %s, method: %s", this.getClass()
-            .getCanonicalName(), "tearDown"));
+        System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "tearDown"));
         MyCalculator = null;
         System.out.println("<End of test>");
         System.out.println("=====");
@@ -47,16 +43,14 @@ public abstract class BaseCalculatorBeforeAfterHookInheritanceTest {
 
     @AfterClass
     public void afterClass() {
-        System.out.println(String.format("Class: %s, method: %s", this.getClass()
-            .getCanonicalName(), "afterClass"));
+        System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "afterClass"));
         System.out.println("*****");
         System.out.println();
     }
 
     @AfterSuite
     public void afterSuite() {
-        System.out.println(String.format("Class: %s, method: %s", this.getClass()
-            .getCanonicalName(), "afterSuite"));
+        System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "afterSuite"));
         System.out.println("+++++");
         System.out.println();
     }
