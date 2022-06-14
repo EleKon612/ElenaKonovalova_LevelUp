@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import ru.levelp.at.lesson0304.build.unit.testing.tools.dataprovider.ExternalDataProvider;
+import ru.levelp.at.lesson0304.build.unit.testing.tools.dataprovider.ExternalDataProviderExampleTest;
 import ru.levelup.qa.at.calculator.Calculator;
 
 public class MyCalculatorHomeworkAllClassesTest {
@@ -55,12 +57,28 @@ public class MyCalculatorHomeworkAllClassesTest {
         assertEquals(res, 4L);
     }
 
+    @Test(dataProvider = "Test Data for sumLong Method", dataProviderClass = HomeworkExternalDataProvider.class)
+    public void sumLongWithDataProvider(long a, long b, long expectedResult) {
+        System.out.println(String.format("Class: %s, test method: %s", HomeworkExternalDataProvider.class
+            .getCanonicalName(), "sumLongWithDataProvider"));
+        long res = calculator.sum(a, b);
+        assertEquals(res, expectedResult);
+    }
+
     @Test
     public void sumDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClassesTest.class
             .getCanonicalName(), "sumDouble"));
         double res = calculator.sum(4.3D, 2.6D);
         assertEquals(res, 6.9D, 0.01);
+    }
+
+    @Test(dataProvider = "Test Data for sumDouble Method", dataProviderClass = HomeworkExternalDataProvider.class)
+    public void sumDoubleWithDataProvider(double a, double b, double expectedResult) {
+        System.out.println(String.format("Class: %s, test method: %s", HomeworkExternalDataProvider.class
+            .getCanonicalName(), "sumDoubleWithDataProvider"));
+        double res = calculator.sum(a, b);
+        assertEquals(res, expectedResult, 0.001);
     }
 
     @Test
