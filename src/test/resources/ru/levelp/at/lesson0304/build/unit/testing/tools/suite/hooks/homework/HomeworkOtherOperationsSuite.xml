@@ -3,7 +3,7 @@
 
     <test name="Homework Pow And Sqrt Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClasses">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest">
               <methods>
                   <include name="powDouble"/>
                   <include name="sqrtDouble"/>
@@ -14,7 +14,7 @@
 
     <test name="Homework Boolean Suite">
         <classes>
-            <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClasses">
+            <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest">
                 <methods>
                     <include name="booleanPositive"/>
                     <include name="booleanNull"/>

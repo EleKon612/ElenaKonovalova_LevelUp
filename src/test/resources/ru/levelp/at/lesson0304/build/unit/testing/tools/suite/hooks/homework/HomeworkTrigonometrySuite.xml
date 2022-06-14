@@ -3,7 +3,7 @@
 
     <test name="Homework Trigonometry Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClasses">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest">
               <methods>
                   <include name="sinDouble"/>
                   <include name="cosDouble"/>

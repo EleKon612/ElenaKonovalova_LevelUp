@@ -24,7 +24,39 @@
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+
+        <!-- Project properties -->
+        <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
+        <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
+        <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework</homework.suites.base.dir>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>homework-all-classes-tests</id>
+            <properties>
+                <test.suite.name>homework/HomeworkAllClassesSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework-other-operations-tests</id>
+            <properties>
+                <test.suite.name>homework/HomeworkOtherOperationsSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>data-provider-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <test.suite.name>dataprovider/DataProviderExampleSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -47,7 +79,6 @@
             </exclusions>
         </dependency>
 
-
         <dependency>
             <groupId>ru.levelp.at</groupId>
             <artifactId>ElenaKonovalova_LevelUp_project_calculator</artifactId>
@@ -55,6 +86,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/calculator-1.0.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire-plugin.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -110,6 +148,18 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${all.suites.base.dir}/${test.suite.name}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

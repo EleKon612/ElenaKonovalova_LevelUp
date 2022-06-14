@@ -4,7 +4,7 @@ import org.testng.annotations.AfterGroups;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
-import ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClasses;
+import ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest;
 import ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterClassHookTest;
 import ru.levelup.qa.at.calculator.Calculator;
 
@@ -14,14 +14,14 @@ public abstract class BaseCalculatorBeforeAfterGroupsHookTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClasses.class
+        System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClassesTest.class
             .getCanonicalName(), "setUp"));
         calculator = new Calculator();
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClasses.class
+        System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClassesTest.class
             .getCanonicalName(), "tearDown"));
         calculator = null;
         System.out.println("=====");
