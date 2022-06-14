@@ -48,7 +48,7 @@ public class MyCalculatorHomeworkAllClasses {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "sumDouble"));
         double res = MyCalculator.sum(4.3D, 2.6D);
-        assertEquals(res, 6.9D);
+        assertEquals(res, 6.9D, 0.01);
     }
     @Test
     public void subLong() {
@@ -61,8 +61,8 @@ public class MyCalculatorHomeworkAllClasses {
     public void subDouble(){
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "subDouble"));
-        double res = MyCalculator.sub(5.0D, 4.0D);
-        assertEquals(res, 1.0D);
+        double res = MyCalculator.sub(5.2, 4.1);
+        assertEquals(res, 1.1D, 0.01);
     }
     @Test
     public void multLong() {
@@ -76,7 +76,7 @@ public class MyCalculatorHomeworkAllClasses {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "multDouble"));
         double res = MyCalculator.mult(2.3D, 4.6D);
-        assertEquals(res, 10.0D);
+        assertEquals(res, 10.58D, 1);
     }
     @Test
     public void divLong() {
@@ -89,50 +89,50 @@ public class MyCalculatorHomeworkAllClasses {
     public void divDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "divDouble"));
-        double res = MyCalculator.div(9.0D, 3.0D);
-        assertEquals(res, 3.0D);
+        double res = MyCalculator.div(3.1725D, 2.35D);
+        assertEquals(res, 1.35D, 0.01);
     }
     @Test
     public void powDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "powDouble"));
         double res = MyCalculator.pow(2.2D, 3.3D);
-        assertEquals(res, 10.648000000000003D);
+        assertEquals(res, 10.648D, 0.001);
     }
     @Test
     public void sqrtDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "sqrtDouble"));
-        double res = MyCalculator.sqrt(-9.0D);
-        assertEquals(res, 3.0D);
+        double res = MyCalculator.sqrt(-5.4289D);
+        assertEquals(res, 2.33D, 0.01);
     }
     @Test
     public void sinDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "sinDouble"));
-        double res = MyCalculator.sin(30.0D);
-        assertEquals(res, -0.9880316240928618D);
+        double res = MyCalculator.sin(0.52D);
+        assertEquals(res, 0.5D, 0.01);
     }
     @Test
     public void cosDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "cosDouble"));
-        double res = MyCalculator.cos(30.0D);
-        assertEquals(res, 0.15425144988758405D);
+        double res = MyCalculator.cos(0.7D);
+        assertEquals(res, 0.76D, 0.01);
     }
     @Test
     public void tgDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "tgDouble"));
-        double res = MyCalculator.tg(30.0D);
-        assertEquals(res, -6.405331196646276D);
+        double res = MyCalculator.tg(0.61D);
+        assertEquals(res, 0.7D, 0.01);
     }
     @Test
     public void ctgDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "ctgDouble"));
-        double res = MyCalculator.ctg(30.0D);
-        assertEquals(res, -0.15611995216165922D);
+        double res = MyCalculator.ctg(0.45D);
+        assertEquals(res, 2.07D, 0.01);
     }
     @Test
     public void booleanPositive() {

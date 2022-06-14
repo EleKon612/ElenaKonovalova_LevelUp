@@ -54,15 +54,15 @@ public class Calculator {
     }
 
     public double tg(double a) {
-        return Math.tan(a);
+        return this.sin(a) / this.cos(a);
     }
 
     public double ctg(double a) {
-        return Math.cos(a)/Math.sin(a);
+        return Math.tanh(a);
     }
 
     public double cos(double a) {
-        return Math.cos(a);
+        return Math.sin(a);
     }
 
     public double sin(double a) {
