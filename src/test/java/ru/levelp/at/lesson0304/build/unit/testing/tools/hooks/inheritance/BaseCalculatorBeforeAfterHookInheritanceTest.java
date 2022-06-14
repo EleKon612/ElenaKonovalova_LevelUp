@@ -10,7 +10,7 @@ import ru.levelup.qa.at.calculator.Calculator;
 
 public abstract class BaseCalculatorBeforeAfterHookInheritanceTest {
 
-    protected Calculator MyCalculator;
+    protected Calculator calculator;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -26,16 +26,16 @@ public abstract class BaseCalculatorBeforeAfterHookInheritanceTest {
     }
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         System.out.println("<Start of test>");
         System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "setUp"));
-        MyCalculator = new Calculator();
+        calculator = new Calculator();
     }
 
     @AfterMethod
     public void tearDown() {
         System.out.println(String.format("Class: %s, method: %s", this.getClass().getCanonicalName(), "tearDown"));
-        MyCalculator = null;
+        calculator = null;
         System.out.println("<End of test>");
         System.out.println("=====");
         System.out.println();

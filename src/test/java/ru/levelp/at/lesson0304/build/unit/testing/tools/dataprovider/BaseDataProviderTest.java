@@ -6,19 +6,19 @@ import ru.levelup.qa.at.calculator.Calculator;
 
 public abstract class BaseDataProviderTest {
 
-    protected Calculator MyCalculator;
+    protected Calculator calculator;
 
     @BeforeMethod
     public void setUp() {
         System.out.println("=start=");
         System.out.println(String.format("Class: %s, method %s", this.getClass().getCanonicalName(), "setUp"));
-        MyCalculator = new Calculator();
+        calculator = new Calculator();
     }
 
     @AfterMethod
     public void tearDown() {
         System.out.println(String.format("Class: %s, method %s", this.getClass().getCanonicalName(), "tearDown"));
-        MyCalculator = null;
+        calculator = null;
         System.out.println("=end=");
         System.out.println();
     }

@@ -10,9 +10,9 @@ public class InternalDataProviderExampleTest extends BaseDataProviderTest {
     @DataProvider
     public static Object[][] addDataProvider() {
         return new Object[][] {
-            {2,2,4},
-            {3,4,7},
-            {8,9,17},
+            {2, 2, 4},
+            {3, 4, 7},
+            {8, 9, 17},
         };
     }
 
@@ -20,16 +20,16 @@ public class InternalDataProviderExampleTest extends BaseDataProviderTest {
     public void sumTest(double a, double b, double expectedResult) {
         System.out.println(String.format("Class: %s, test method: %s", InternalDataProviderExampleTest.class
             .getCanonicalName(), "sumTest"));
-        double res = MyCalculator.sum(a, b);
+        double res = calculator.sum(a, b);
         assertEquals(res, expectedResult);
     }
 
     @DataProvider(name = "Test Data for Divide Method")
     public static Object[][] divideDataProvider() {
         return new Object[][] {
-            {4.4,2,2.2},
-            {77,11,7},
-            {9,9,1},
+            {4.4, 2, 2.2},
+            {77, 11, 7},
+            {9, 9, 1},
         };
     }
 
@@ -37,7 +37,7 @@ public class InternalDataProviderExampleTest extends BaseDataProviderTest {
     public void divTest(double a, double b, double expectedResult) {
         System.out.println(String.format("Class: %s, test method: %s", InternalDataProviderExampleTest.class
             .getCanonicalName(), "divTest"));
-        double res = MyCalculator.div(a, b);
+        double res = calculator.div(a, b);
         assertEquals(res, expectedResult);
     }
 }

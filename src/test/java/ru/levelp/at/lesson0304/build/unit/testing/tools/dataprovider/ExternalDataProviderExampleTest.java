@@ -11,7 +11,7 @@ public class ExternalDataProviderExampleTest extends BaseDataProviderTest {
     public void sumTest(double a, double b, double expectedResult) {
         System.out.println(String.format("Class: %s, test method: %s", ExternalDataProviderExampleTest.class
             .getCanonicalName(), "sumTest"));
-        double res = MyCalculator.sum(a, b);
+        double res = calculator.sum(a, b);
         assertEquals(res, expectedResult);
     }
 
@@ -19,7 +19,7 @@ public class ExternalDataProviderExampleTest extends BaseDataProviderTest {
     public void divTest(double a, double b, double expectedResult) {
         System.out.println(String.format("Class: %s, test method: %s", ExternalDataProviderExampleTest.class
             .getCanonicalName(), "divTest"));
-        double res = MyCalculator.div(a, b);
+        double res = calculator.div(a, b);
         assertEquals(res, expectedResult);
     }
 
