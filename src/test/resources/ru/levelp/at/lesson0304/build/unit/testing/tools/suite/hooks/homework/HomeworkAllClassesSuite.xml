@@ -3,7 +3,7 @@
 
     <test name="Homework All Classes Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.homework.MyCalculatorHomeworkAllClasses">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClasses">
           </class>
       </classes>
     </test>

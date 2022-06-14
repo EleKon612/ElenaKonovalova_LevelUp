@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Data Provider Example Suite">
+<test name="Data Provider Example Suite">
+    <packages>
+        <package name="ru.levelp.at.lesson0304.build.unit.testing.tools.dataprovider.*">
+        </package>
+    </packages>
+</test>
+</suite>

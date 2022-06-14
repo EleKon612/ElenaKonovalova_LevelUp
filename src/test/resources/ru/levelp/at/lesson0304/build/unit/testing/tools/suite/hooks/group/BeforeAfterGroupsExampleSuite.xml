@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Before After Groups Example Suite">
+<test name="BeforeAfterGroupExampleSuite">
+    <packages>
+        <package name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.group">
+        </package>
+    </packages>
+    <groups>
+        <run>
+            <include name="long"/>
+            <include name="multiply"/>
+        </run>
+    </groups>
+</test>
+</suite>

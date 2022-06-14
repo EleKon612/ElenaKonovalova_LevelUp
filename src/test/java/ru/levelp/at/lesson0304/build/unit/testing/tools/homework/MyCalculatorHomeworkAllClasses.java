@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.homework;
+package ru.levelp.at.lesson0304.build.unit.testing.tools.homework;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -6,9 +6,11 @@ import static org.testng.Assert.assertTrue;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.levelup.qa.at.calculator.Calculator;
 
@@ -23,6 +25,15 @@ public class MyCalculatorHomeworkAllClasses {
             .getCanonicalName(), "beforeSuite"));
         System.out.println();
     }
+
+    @BeforeTest
+    public void beforeTest() {
+        System.out.println("-----");
+        System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClasses.class
+            .getCanonicalName(), "beforeTest"));
+        System.out.println();
+    }
+
     @BeforeClass
     public void beforeClass() {
         System.out.println("*****");
@@ -31,7 +42,6 @@ public class MyCalculatorHomeworkAllClasses {
     }
     @BeforeMethod
     public void setUp(){
-        System.out.println("<Start of test>");
         System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "setUp"));
         MyCalculator = new Calculator();
@@ -85,6 +95,13 @@ public class MyCalculatorHomeworkAllClasses {
         long res = MyCalculator.div(4, 2);
         assertEquals(res, 2L);
     }
+
+    @Test(expectedExceptions = {NumberFormatException.class}, expectedExceptionsMessageRegExp=
+        "Attempt to divide by zero")
+    public void divideByZeroTest() {
+        MyCalculator.div(1, 0);
+    }
+
     @Test
     public void divDouble() {
         System.out.println(String.format("Class: %s, test method: %s", MyCalculatorHomeworkAllClasses.class
@@ -160,7 +177,6 @@ public class MyCalculatorHomeworkAllClasses {
         System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "tearDown"));
         MyCalculator = null;
-        System.out.println("<End of test>");
         System.out.println("=====");
         System.out.println();
     }
@@ -170,6 +186,14 @@ public class MyCalculatorHomeworkAllClasses {
         System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClasses.class
             .getCanonicalName(), "afterClass"));
         System.out.println("*****");
+        System.out.println();
+    }
+
+    @AfterTest
+    public void afterTest(){
+        System.out.println(String.format("Class: %s, method: %s", MyCalculatorHomeworkAllClasses.class
+            .getCanonicalName(), "afterTest"));
+        System.out.println("-----");
         System.out.println();
     }
 

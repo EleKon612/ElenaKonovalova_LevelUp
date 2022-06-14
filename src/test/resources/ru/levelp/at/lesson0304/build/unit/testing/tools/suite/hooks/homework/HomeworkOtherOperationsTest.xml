@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework Other Operations Two Suites Suite">
+
+    <test name="Homework Pow And Sqrt Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClasses">
+              <methods>
+                  <include name="powDouble"/>
+                  <include name="sqrtDouble"/>
+              </methods>
+          </class>
+      </classes>
+    </test>
+
+    <test name="Homework Boolean Suite">
+        <classes>
+            <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClasses">
+                <methods>
+                    <include name="booleanPositive"/>
+                    <include name="booleanNull"/>
+                    <include name="booleanNegative"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
