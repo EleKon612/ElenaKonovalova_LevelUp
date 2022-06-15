@@ -3,23 +3,21 @@
 
     <test name="Homework Pow And Sqrt Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest">
-              <methods>
-                  <include name="powDouble"/>
-                  <include name="sqrtDouble"/>
-              </methods>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.PowerTest">
+          </class>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.SqrtTest">
           </class>
       </classes>
     </test>
 
-    <test name="Homework Boolean Suite">
+    <test name="Homework Positive Negative Suite">
         <classes>
-            <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest">
-                <methods>
+            <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.PositiveNegativeTest">
+                <!--<methods>
                     <include name="booleanPositive"/>
                     <include name="booleanNull"/>
                     <include name="booleanNegative"/>
-                </methods>
+                </methods>-->
             </class>
         </classes>
     </test>

@@ -3,14 +3,14 @@
 
     <test name="Method Exclusion Inclusion Example Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterSuiteHookTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.BeforeAfterSuiteHookTest">
               <methods>
                   <include name="sum2point0and4point0"/>
               </methods>
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterClassHookTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.BeforeAfterClassHookTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.MyCalculatorBeforeAfterMethodHookTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.BeforeAfterMethodHookTest">
               <methods>
                   <exclude name="sum2point0and4point0"/>
               </methods>

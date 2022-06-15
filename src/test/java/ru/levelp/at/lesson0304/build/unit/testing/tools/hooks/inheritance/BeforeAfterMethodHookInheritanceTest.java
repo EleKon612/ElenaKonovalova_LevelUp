@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.levelup.qa.at.calculator.Calculator;
 
-public class MyCalculatorBeforeAfterMethodHookInheritanceTest extends BaseCalculatorBeforeAfterHookInheritanceTest {
+public class BeforeAfterMethodHookInheritanceTest extends BaseCalculatorBeforeAfterHookInheritanceTest {
 
     private Calculator calculator;
 

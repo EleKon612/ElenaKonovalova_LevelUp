@@ -4,7 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
 
-public class MyCalculatorBeforeAfterSuiteHookInheritanceTest extends BaseCalculatorBeforeAfterHookInheritanceTest {
+public class BeforeAfterSuiteHookInheritanceTest extends BaseCalculatorBeforeAfterHookInheritanceTest {
 
     @Test
     public void sum2And2() {

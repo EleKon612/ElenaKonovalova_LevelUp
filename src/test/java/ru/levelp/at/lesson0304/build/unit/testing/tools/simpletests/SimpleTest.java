@@ -5,7 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 import ru.levelup.qa.at.calculator.Calculator;
 
-public class MyCalculatorSimpleTest {
+public class SimpleTest {
 
     @Test
     public void sum2And2() {

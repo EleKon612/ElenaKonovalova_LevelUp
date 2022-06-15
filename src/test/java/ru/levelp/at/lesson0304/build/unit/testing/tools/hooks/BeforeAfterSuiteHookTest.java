@@ -11,14 +11,14 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import ru.levelup.qa.at.calculator.Calculator;
 
-public class MyCalculatorBeforeAfterSuiteHookTest {
+public class BeforeAfterSuiteHookTest {
 
     private Calculator calculator;
 
     @BeforeSuite
     public void beforeSuite() {
         System.out.println("+++++");
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "beforeSuite"));
         System.out.println();
     }
@@ -26,21 +26,21 @@ public class MyCalculatorBeforeAfterSuiteHookTest {
     @BeforeClass
     public void beforeClass() {
         System.out.println("*****");
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "beforeClass"));
     }
 
     @BeforeMethod
     public void setUp() {
         System.out.println("<Start of test>");
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "setUp"));
         calculator = new Calculator();
     }
 
     @Test
     public void sum2And2() {
-        System.out.println(String.format("Class: %s, test method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, test method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "sum2And2"));
         long res = calculator.sum(2, 2);
         assertEquals(res, 4L, "Incorrect");
@@ -48,7 +48,7 @@ public class MyCalculatorBeforeAfterSuiteHookTest {
 
     @Test
     public void sum2point0and4point0() {
-        System.out.println(String.format("Class: %s, test method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, test method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "sum2point0and4point0"));
         double res = calculator.sum(2.0D, 4.0D);
         assertEquals(res, 6.0D);
@@ -56,7 +56,7 @@ public class MyCalculatorBeforeAfterSuiteHookTest {
 
     @AfterMethod
     public void tearDown() {
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "tearDown"));
         calculator = null;
         System.out.println("<End of test>");
@@ -66,7 +66,7 @@ public class MyCalculatorBeforeAfterSuiteHookTest {
 
     @AfterClass
     public void afterClass() {
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "afterClass"));
         System.out.println("*****");
         System.out.println();
@@ -74,7 +74,7 @@ public class MyCalculatorBeforeAfterSuiteHookTest {
 
     @AfterSuite
     public void afterSuite() {
-        System.out.println(String.format("Class: %s, method: %s", MyCalculatorBeforeAfterSuiteHookTest.class
+        System.out.println(String.format("Class: %s, method: %s", BeforeAfterSuiteHookTest.class
             .getCanonicalName(), "afterSuite"));
         System.out.println("+++++");
         System.out.println();
