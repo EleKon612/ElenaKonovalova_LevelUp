@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework Data Provider Suite">
+
+    <test name="Homework Data Provider Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest">
+              <methods>
+                  <include name="sumDoubleWithDataProvider"/>
+                  <include name="sumLongWithDataProvider"/>
+              </methods>
+          </class>
+      </classes>
+    </test>
+
+</suite>

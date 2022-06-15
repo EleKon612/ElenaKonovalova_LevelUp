@@ -36,6 +36,9 @@
     <profiles>
         <profile>
             <id>homework-all-classes-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <test.suite.name>homework/HomeworkAllClassesSuite.xml</test.suite.name>
             </properties>
@@ -49,12 +52,9 @@
         </profile>
 
         <profile>
-            <id>data-provider-tests</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>homework-data-provider-tests</id>
             <properties>
-                <test.suite.name>dataprovider/DataProviderExampleSuite.xml</test.suite.name>
+                <test.suite.name>homework/HomeworkDataProviderSuite.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
