@@ -4,11 +4,11 @@
     <test name="Before After Hook Inheritance Example Suite">
       <classes>
 
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.MyCalculatorBeforeAfterSuiteHookInheritanceTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.BeforeAfterSuiteHookInheritanceTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.MyCalculatorBeforeAfterClassHookInheritanceTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.BeforeAfterClassHookInheritanceTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.MyCalculatorBeforeAfterMethodHookInheritanceTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance.BeforeAfterMethodHookInheritanceTest">
           </class>
       </classes>
     </test>

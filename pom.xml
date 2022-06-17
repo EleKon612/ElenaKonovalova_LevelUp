@@ -25,7 +25,7 @@
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+        <!--<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>-->
 
         <!-- Project properties -->
         <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
@@ -35,12 +35,12 @@
 
     <profiles>
         <profile>
-            <id>homework-all-classes-tests</id>
+            <id>homework-data-provider-tests</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>homework/HomeworkAllClassesSuite.xml</test.suite.name>
+                <test.suite.name>homework/HomeworkDataProviderSuite.xml</test.suite.name>
             </properties>
         </profile>
 
@@ -48,13 +48,6 @@
             <id>homework-other-operations-tests</id>
             <properties>
                 <test.suite.name>homework/HomeworkOtherOperationsSuite.xml</test.suite.name>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>homework-data-provider-tests</id>
-            <properties>
-                <test.suite.name>homework/HomeworkDataProviderSuite.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -87,19 +80,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/calculator-1.0.jar</systemPath>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire-plugin.version}</version>
-        </dependency>
-
-        <!--<dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <version>${maven-failsafe-plugin.version}</version>
-        </dependency>-->
-
     </dependencies>
 
     <build>
@@ -167,7 +147,7 @@
                 </configuration>
             </plugin>
 
-           <!-- <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>

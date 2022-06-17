@@ -3,13 +3,9 @@
 
     <test name="Homework Sub And Div Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MyCalculatorHomeworkAllClassesTest">
-              <methods>
-                  <include name="subLong"/>
-                  <include name="subDouble"/>
-                  <include name="divLong"/>
-                  <include name="divDouble"/>
-              </methods>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.SubtractTest">
+          </class>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.DivideTest">
           </class>
       </classes>
     </test>

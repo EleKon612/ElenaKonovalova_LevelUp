@@ -2,7 +2,7 @@ package ru.levelp.at.lesson0304.build.unit.testing.tools.homework;
 
 import org.testng.annotations.DataProvider;
 
-public class HomeworkExternalDataProvider {
+public class DataProviders {
 
     @DataProvider(name = "Test Data for sumLong Method")
     public static Object[][] sumLongDataProvider() {

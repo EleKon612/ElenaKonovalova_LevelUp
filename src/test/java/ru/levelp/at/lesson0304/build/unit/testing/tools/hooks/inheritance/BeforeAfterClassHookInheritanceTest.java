@@ -3,9 +3,8 @@ package ru.levelp.at.lesson0304.build.unit.testing.tools.hooks.inheritance;
 import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
-import ru.levelup.qa.at.calculator.Calculator;
 
-public class MyCalculatorBeforeAfterClassHookInheritanceTest extends BaseCalculatorBeforeAfterHookInheritanceTest {
+public class BeforeAfterClassHookInheritanceTest extends BaseCalculatorBeforeAfterHookInheritanceTest {
 
     @Test
     public void sum2And2() {
