@@ -1,8 +1,7 @@
-package ru.levelp.at.lesson0507.selenium.windowhandles;
+package ru.levelp.at.lesson0507.selenium.basic.windowhandles;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.Set;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,7 +22,7 @@ public class SeleniumWindowHandleExampleTest {
     @BeforeSuite
     public void beforeSuite() {
         System.setProperty("webdriver.chrome.driver", this.getClass()
-            .getResource("/ru/levelp/at/lesson0507/selenium/drivers/chromedriver").getPath());
+            .getResource("/ru/levelp/at/lesson0507/selenium/basic/drivers/chromedriver").getPath());
     }
 
     @BeforeMethod

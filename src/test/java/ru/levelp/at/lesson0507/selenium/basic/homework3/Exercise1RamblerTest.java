@@ -1,9 +1,11 @@
-package ru.levelp.at.lesson0507.selenium.homework3;
+package ru.levelp.at.lesson0507.selenium.basic.homework3;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.levelp.at.utils.SleepUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -27,13 +29,11 @@ public class Exercise1RamblerTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver(new ChromeOptions());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
-        options.addArguments("user-data-dir=C:/Users/ekonovalova/AppData/Local/Google/Chrome/User Data");
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @Test
@@ -50,9 +50,27 @@ public class Exercise1RamblerTest {
         insertAccountName.sendKeys("elekon612@rambler.ru");
         WebElement insertPassword = driver.findElement(By.xpath("//div/input[@id='password']"));
         insertPassword.sendKeys("Selenium2022" + Keys.ENTER);
-        var ramblerInbox = driver.getWindowHandle();
-        driver.switchTo().window(ramblerInbox);
-        assertTrue(driver.getCurrentUrl().contains("INBOX"));
+        SleepUtils.sleep(3000);
+
+        String InboxURL = driver.getCurrentUrl();
+        assertEquals(InboxURL, "https://mail.rambler.ru/folder/INBOX");
+
+        WebElement newLetterButton = driver.findElement(By.xpath("//*[@class='rui-Button-content']"));
+        newLetterButton.click();
+
+        WebElement insertReceivers = driver.findElement(By.xpath("//span/input[@id='receivers']"));
+        insertReceivers.sendKeys("elena.volnova@mail.ru");
+        WebElement insertSubject = driver.findElement(By.xpath("//div/input[@id='subject']"));
+        insertSubject.sendKeys("TestLetter Subject");
+        /*WebElement insertBody = driver.findElement(By.xpath("//*[@id='tinymce']"));
+        insertBody.sendKeys("TestLetter body");*/
+        WebElement saveDraft = driver.findElement(By.xpath("//*[text()='Сохранить черновик']"));
+        saveDraft.click();
+        WebElement goToDrafts = driver.findElement(By.xpath("//*[text()='Черновики']"));
+        goToDrafts.click();
+
+        ExpectedConditions.textToBePresentInElement(driver.findElement(By.className("ListItem-subject-2M")),
+            "TestLetter Subject");
     }
 
     /*@AfterMethod

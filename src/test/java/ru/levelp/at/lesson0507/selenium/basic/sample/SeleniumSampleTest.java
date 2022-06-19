@@ -1,8 +1,7 @@
-package ru.levelp.at.lesson0507.selenium.sample;
+package ru.levelp.at.lesson0507.selenium.basic.sample;
 
 import static org.testng.Assert.assertEquals;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -10,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class SeleniumSampleWithWebDriverManagerTest {
+public class SeleniumSampleTest {
 
     private static final String GOOGLE_URL = "https://google.com";
 
@@ -18,7 +17,8 @@ public class SeleniumSampleWithWebDriverManagerTest {
 
     @BeforeSuite
     public void beforeSuite() {
-        WebDriverManager.chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver", this.getClass()
+            .getResource("/ru/levelp/at/lesson0507/selenium/basic/drivers/chromedriver").getPath());
     }
 
     @BeforeMethod

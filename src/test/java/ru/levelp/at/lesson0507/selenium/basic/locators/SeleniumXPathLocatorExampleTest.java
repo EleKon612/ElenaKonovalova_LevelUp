@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson0507.selenium.locators;
+package ru.levelp.at.lesson0507.selenium.basic.locators;
 
 import static org.testng.Assert.assertTrue;
 
