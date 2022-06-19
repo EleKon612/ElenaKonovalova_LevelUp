@@ -25,6 +25,7 @@ public class Exercise1YahooTest {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
+        SleepUtils.sleep(750);
     }
 
     @Test
@@ -36,10 +37,10 @@ public class Exercise1YahooTest {
         signInButton.click();
 
 
-        WebElement insertUsername = driver.findElement(By.xpath("//*[@id='login-username']"));
+        WebElement insertUsername = driver.findElement(By.xpath("//*[@class='phone-no']"));
         insertUsername.sendKeys("elekon612" + Keys.ENTER);
 
-        WebElement insertPassword = driver.findElement(By.xpath("//*[@id='login-passwd']"));
+        WebElement insertPassword = driver.findElement(By.xpath("//*[@class='password']"));
         insertPassword.sendKeys("Selenium2022" + Keys.ENTER);
         /*Assert.assertTrue(driver.getTitle().contains("Yahoo Почта"));*/
     }
