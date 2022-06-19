@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -31,7 +32,6 @@ public class Exercise1MailruTest {
     @Test
     public void enterMailruTest() {
         driver.navigate().to(MAILRU_URL);
-        assertEquals(driver.getTitle(), "Mail.ru: почта, поиск в интернете, новости, игры");
 
         WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, " +
             "'resplash-btn resplash-btn_primary resplash-btn_mailbox-big svelte-vawtzz')]"));
@@ -41,23 +41,17 @@ public class Exercise1MailruTest {
             ("//div/iframe[@class='ag-popup__frame__layout__iframe']"));
         driver.switchTo().frame(loginFrame);
 
-        /*WebElement printAccountName = driver.findElement(By.xpath("//*[contains(@placeholder, " +
-            "'Account name')]"));
+        /*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+        username.click();*/
+
+        WebElement username = driver.switchTo().activeElement();
+        username.sendKeys("elekon612" + Keys.ENTER);
+
+        /*WebElement printAccountName = driver.findElement(By.xpath("//input[@name='username']"));
         printAccountName.sendKeys("elekon612" + Keys.ENTER);*/
-
-        WebElement printAccountName = driver.findElement(By.xpath
-            ("//div/input[@placeholder='Account name']"));
-        printAccountName.sendKeys("elekon612" + Keys.ENTER);
-
-        /*WebElement loginFrame = driver.findElement(By.xpath(
-            "//div/iframe[@class='iframe-0-2-16']"));
-        driver.switchTo().frame(loginFrame);*/
-
-        /*WebElement printPassword = driver.findElement(By.xpath("//*[contains(@name," + "'password')]"));
-        printPassword.sendKeys("Lubrasil5D" + Keys.ENTER);*/
     }
 
-    /*@AfterClass
+    /*@AfterMethod
     public void tearDown() {
         driver.quit();
     }*/
