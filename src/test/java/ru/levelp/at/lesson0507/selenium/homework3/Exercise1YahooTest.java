@@ -18,21 +18,23 @@ public class Exercise1YahooTest {
 
     @BeforeSuite
     public void beforeSuite() {
-        WebDriverManager.chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver", this.getClass()
+            .getResource("/ru/levelp/at/lesson0507/selenium/drivers/chromedriver").getPath());
+        // WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        SleepUtils.sleep(750);
+        // SleepUtils.sleep(750);
     }
 
     @Test
     public void enterYahooTest() {
         driver.navigate().to(YAHOO_URL);
 
-        WebElement signInButton = driver.findElement(By.xpath
-            ("//div/a[@class='fuji-button-link fuji-button-inverted signin']"));
+        WebElement signInButton = driver.findElement(By.xpath(
+            "//div/a[@class='fuji-button-link fuji-button-inverted signin']"));
         signInButton.click();
 
 

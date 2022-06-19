@@ -42,7 +42,7 @@ public class SeleniumWindowHandleExampleTest {
         driver.switchTo().newWindow(WindowType.TAB);
         driver.get(YA_URL);
         windowHandles = driver.getWindowHandles();
-        var yaRuWindowHandle = driver.getWindowHandle();
+        // var yaRuWindowHandle = driver.getWindowHandle();
         System.out.println(String.format("After open Ya.ru window handles are %s", YA_URL, windowHandles));
 
         // открываем yandex.ru
@@ -54,7 +54,7 @@ public class SeleniumWindowHandleExampleTest {
         // закрываем yandex.ru
         driver.close();
         windowHandles = driver.getWindowHandles();
-        driver.switchTo().window(yaRuWindowHandle);
+        // driver.switchTo().window(yaRuWindowHandle);
         System.out.println(String.format("After close Yandex.ru window handles are %s", YANDEX_URL, windowHandles));
         driver.switchTo().defaultContent();
 

@@ -2,7 +2,7 @@ package ru.levelp.at.lesson0507.selenium.homework3;
 
 import static org.testng.Assert.assertEquals;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+// import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -33,12 +33,12 @@ public class Exercise1MailruTest {
     public void enterMailruTest() {
         driver.navigate().to(MAILRU_URL);
 
-        WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, " +
-            "'resplash-btn resplash-btn_primary resplash-btn_mailbox-big svelte-vawtzz')]"));
+        WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, "
+            + "'resplash-btn resplash-btn_primary resplash-btn_mailbox-big svelte-vawtzz')]"));
         enterButton.click();
 
-        WebElement loginFrame = driver.findElement(By.xpath
-            ("//div/iframe[@class='ag-popup__frame__layout__iframe']"));
+        WebElement loginFrame = driver.findElement(By.xpath(
+            "//div/iframe[@class='ag-popup__frame__layout__iframe']"));
         driver.switchTo().frame(loginFrame);
 
         /*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));

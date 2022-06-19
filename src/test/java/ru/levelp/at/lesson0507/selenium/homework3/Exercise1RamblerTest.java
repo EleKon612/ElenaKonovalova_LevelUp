@@ -32,10 +32,10 @@ public class Exercise1RamblerTest {
     public void enterRamblerTest() {
         driver.navigate().to(RAMBLER_URL);
 
-        WebElement loginFrame = driver.findElement(By.xpath
-            ("//div/iframe[@src='https://id.rambler.ru/login-20/login?=undefined&rname=mail&theme" +
-                "=&session=false&back=https%3A%2F%2Fmail.rambler.ru%2F&param=embed&iframeOrigin" +
-                "=https%3A%2F%2Fmail.rambler.ru']"));
+        WebElement loginFrame = driver.findElement(By.xpath(
+            "//div/iframe[@src='https://id.rambler.ru/login-20/login?=undefined&rname=mail&theme"
+                + "=&session=false&back=https%3A%2F%2Fmail.rambler.ru%2F&param=embed&iframeOrigin"
+                + "=https%3A%2F%2Fmail.rambler.ru']"));
         driver.switchTo().frame(loginFrame);
 
         WebElement insertAccountName = driver.findElement(By.xpath("//div/input[@id='login']"));

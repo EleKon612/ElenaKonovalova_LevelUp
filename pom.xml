@@ -19,6 +19,9 @@
         <checkstyle.version>10.2</checkstyle.version>
         <commons-io.version>2.11.0</commons-io.version>
         <testng.version>7.6.0</testng.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <selenium-java.version>4.2.1</selenium-java.version>
+        <webdrivermanager.version>5.2.0</webdrivermanager.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -79,6 +82,24 @@
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/calculator-1.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
         </dependency>
     </dependencies>
 

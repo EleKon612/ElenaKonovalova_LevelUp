@@ -54,7 +54,7 @@ public class SeleniumXPathLocatorExampleTest extends AbstractSeleniumLocatorExam
         // WebElement applicationButton = driver.findElement(By.xpath("//*[@class='gb_z gb_fd gb_f gb_yf']"));
         // XPath (полное совпадение)
         WebElement applicationButton = driver.findElement(By.xpath(
-            "//*[contains(@class, 'gb_fd')]"));// XPath (частичное совпадение)
+            "//*[contains(@class, 'gb_fd')]")); // XPath (частичное совпадение)
         applicationButton.click();
 
         WebElement applicationFrame = driver.findElement(By.xpath("//div/iframe[@role='presentation']"));
