@@ -1,6 +1,8 @@
 package ru.levelp.at.lesson0507.selenium.homework3;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -18,15 +20,13 @@ public class Exercise1YahooTest {
 
     @BeforeSuite
     public void beforeSuite() {
-        System.setProperty("webdriver.chrome.driver", this.getClass()
-            .getResource("/ru/levelp/at/lesson0507/selenium/drivers/chromedriver").getPath());
-        // WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        // SleepUtils.sleep(750);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
@@ -36,7 +36,6 @@ public class Exercise1YahooTest {
         WebElement signInButton = driver.findElement(By.xpath(
             "//div/a[@class='fuji-button-link fuji-button-inverted signin']"));
         signInButton.click();
-
 
         WebElement insertUsername = driver.findElement(By.xpath("//*[@class='phone-no']"));
         insertUsername.sendKeys("elekon612" + Keys.ENTER);

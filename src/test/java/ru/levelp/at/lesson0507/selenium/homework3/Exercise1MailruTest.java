@@ -2,7 +2,7 @@ package ru.levelp.at.lesson0507.selenium.homework3;
 
 import static org.testng.Assert.assertEquals;
 
-// import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
