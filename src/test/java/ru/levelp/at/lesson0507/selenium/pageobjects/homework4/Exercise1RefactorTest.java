@@ -1,10 +1,6 @@
-package ru.levelp.at.lesson0507.selenium.basic.homework3;
-
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,8 +12,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import ru.levelp.at.utils.SleepUtils;
 
-public class Exercise1MailruTest {
+import java.time.Duration;
+
+import static org.testng.Assert.assertTrue;
+
+public class Exercise1RefactorTest {
 
     private static final String MAILRU_URL = "https://mail.ru";
 
@@ -107,10 +108,11 @@ public class Exercise1MailruTest {
         // Отправить сохраненный черновик
         driver.findElement(By.xpath("//span[text()='Отправить']")).click();
 
-        // Закрыть окно "Сообщение отправлено"
+        // Закрыть окно "Сообщение отправлено" (не работает!!! поэтому SleepUtils)
         WebElement crossButton = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//*[contains(@class, 'button2_close')]")));
+                .visibilityOfElementLocated(By.xpath("//*[@class='layer-window__container']")));
         crossButton.click();
+        SleepUtils.sleep(21000);
 
         // Проверить, что письмо изчезло из черновиков (письмо не исчезает!!! поэтому assertFalse закомментирован)
         wait.until(ExpectedConditions.visibilityOfElementLocated(

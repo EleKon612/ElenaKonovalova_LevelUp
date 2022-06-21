@@ -1,9 +1,6 @@
-package ru.levelp.at.lesson0507.selenium.basic.homework3;
-
-import static org.testng.Assert.assertTrue;
+package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -15,8 +12,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import ru.levelp.at.utils.SleepUtils;
 
-public class Exercise3MailruTest {
+import java.time.Duration;
+
+import static org.testng.Assert.assertTrue;
+
+public class Exercise3RefactorTest {
 
     private static final String MAILRU_URL = "https://mail.ru";
 
@@ -79,9 +81,11 @@ public class Exercise3MailruTest {
         WebElement sentWindow = driver.switchTo().activeElement();
         sentWindow.sendKeys(Keys.COMMAND, Keys.ENTER);
 
-        // Закрыть окно "Сообщение отправлено"
+        // Закрыть окно "Сообщение отправлено" (не работает!!! поэтому SleepUtils)
         WebElement crossButton = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//*[contains(@class, 'button2_close')]")));
+                .visibilityOfElementLocated(By.xpath("//*[@class='layer-window__container']")));
+        crossButton.click();
+        SleepUtils.sleep(21000);
 
         // Verify, что письмо появилось в папке входящие
         WebElement openInbox = wait.until(ExpectedConditions.visibilityOfElementLocated(

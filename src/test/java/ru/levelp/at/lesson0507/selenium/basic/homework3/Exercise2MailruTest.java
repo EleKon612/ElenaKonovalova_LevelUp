@@ -15,7 +15,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import ru.levelp.at.utils.SleepUtils;
 
 public class Exercise2MailruTest {
 
@@ -80,11 +79,10 @@ public class Exercise2MailruTest {
         WebElement sentWindow = driver.switchTo().activeElement();
         sentWindow.sendKeys(Keys.COMMAND, Keys.ENTER);
 
-        // Закрыть окно "Сообщение отправлено" (не работает!!! поэтому SleepUtils)
+        // Закрыть окно "Сообщение отправлено"
         WebElement crossButton = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//*[@class='layer-window__container']")));
+                .visibilityOfElementLocated(By.xpath("//*[contains(@class, 'button2_close')]")));
         crossButton.click();
-        SleepUtils.sleep(21000);
 
         // Verify, что письмо появилось в папке отправленные
         WebElement openSent = wait.until(ExpectedConditions.visibilityOfElementLocated(
