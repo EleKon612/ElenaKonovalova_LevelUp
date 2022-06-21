@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson0304.build.unit.testing.tools.homework;
+package ru.levelp.at.lesson0304.build.unit.testing.tools.homework2;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

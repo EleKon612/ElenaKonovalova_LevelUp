@@ -4,10 +4,10 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import ru.levelp.at.utils.SleepUtils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import ru.levelp.at.utils.SleepUtils;
 
 public class AbstractSeleniumLocatorExampleTest {
 

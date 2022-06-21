@@ -3,7 +3,7 @@
 
     <test name="Homework Data Provider Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.SumTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.SumTest">
               <methods>
                   <include name="sumDoubleWithDataProvider"/>
                   <include name="sumLongWithDataProvider"/>

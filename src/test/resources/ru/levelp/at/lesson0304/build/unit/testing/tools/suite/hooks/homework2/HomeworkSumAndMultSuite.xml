@@ -3,9 +3,9 @@
 
     <test name="Homework Sum and Mult Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.SumTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.SumTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.MultiplyTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.MultiplyTest">
           </class>
       </classes>
     </test>

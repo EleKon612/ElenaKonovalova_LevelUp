@@ -22,6 +22,8 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <selenium-java.version>4.2.1</selenium-java.version>
         <webdrivermanager.version>5.2.0</webdrivermanager.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <snakeyaml.version>1.30</snakeyaml.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -33,24 +35,32 @@
         <!-- Project properties -->
         <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
         <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
-        <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework</homework.suites.base.dir>
+        <homework2.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework2</homework2.suites.base.dir>
+        <homework3.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium</homework3.suites.base.dir>
     </properties>
 
     <profiles>
         <profile>
-            <id>homework-data-provider-tests</id>
+            <id>homework2-data-provider</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>homework/HomeworkDataProviderSuite.xml</test.suite.name>
+                <test.suite.name>homework2/HomeworkDataProviderSuite.xml</test.suite.name>
             </properties>
         </profile>
 
         <profile>
-            <id>homework-other-operations-tests</id>
+            <id>homework2-other-operations</id>
             <properties>
-                <test.suite.name>homework/HomeworkOtherOperationsSuite.xml</test.suite.name>
+                <test.suite.name>homework2/HomeworkOtherOperationsSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework3-selenium</id>
+            <properties>
+                <test.suite.name>homework3/Homework3SeleniumLocatorsSuite.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -100,6 +110,23 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
         </dependency>
     </dependencies>
 
@@ -163,7 +190,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${all.suites.base.dir}/${test.suite.name}</suiteXmlFile>
+                        <suiteXmlFile>${homework3.suites.base.dir}/${test.suite.name}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

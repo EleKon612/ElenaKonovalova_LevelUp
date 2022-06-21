@@ -3,9 +3,9 @@
 
     <test name="Homework Sub And Div Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.SubtractTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.SubtractTest">
           </class>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.DivideTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.DivideTest">
           </class>
       </classes>
     </test>

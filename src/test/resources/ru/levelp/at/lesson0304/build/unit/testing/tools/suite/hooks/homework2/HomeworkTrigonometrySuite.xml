@@ -3,7 +3,7 @@
 
     <test name="Homework Trigonometry Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework.TrigonometryTest">
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.TrigonometryTest">
           </class>
       </classes>
     </test>
