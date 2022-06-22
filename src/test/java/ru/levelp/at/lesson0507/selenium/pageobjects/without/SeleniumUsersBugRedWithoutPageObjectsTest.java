@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.levelp.at.lesson0507.selenium.pageobjects.AbstractSeleniumBaseTest;
 
-public class SeleniumUsersBugRedWithoutPageObjects extends AbstractSeleniumBaseTest {
+public class SeleniumUsersBugRedWithoutPageObjectsTest extends AbstractSeleniumBaseTest {
 
     @Test
     public void registerUserTest() {

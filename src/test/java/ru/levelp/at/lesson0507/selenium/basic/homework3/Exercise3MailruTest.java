@@ -82,6 +82,7 @@ public class Exercise3MailruTest {
         // Закрыть окно "Сообщение отправлено"
         WebElement crossButton = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//*[contains(@class, 'button2_close')]")));
+        crossButton.click();
 
         // Verify, что письмо появилось в папке входящие
         WebElement openInbox = wait.until(ExpectedConditions.visibilityOfElementLocated(

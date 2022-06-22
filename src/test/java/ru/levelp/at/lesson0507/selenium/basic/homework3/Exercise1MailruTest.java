@@ -45,6 +45,7 @@ public class Exercise1MailruTest {
     public void exercise1Test() {
         // Открыть сайт mail.ru и нажать кнопку "Войти"
         driver.navigate().to(MAILRU_URL);
+
         WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, 'resplash-btn')]"));
         enterButton.click();
 
