@@ -1,12 +1,11 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.voids.refactor;
 
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public abstract class UsersBugRedBasePageRefactor {
 
@@ -24,7 +23,7 @@ public abstract class UsersBugRedBasePageRefactor {
     public abstract void open();
 
     protected void open(final String relativeUrl) {
-        driver.navigate().to(USERS_BUGRED_URL +relativeUrl);
+        driver.navigate().to(USERS_BUGRED_URL + relativeUrl);
     }
 
     protected void fillInputField(final WebElement inputField, final String text) {

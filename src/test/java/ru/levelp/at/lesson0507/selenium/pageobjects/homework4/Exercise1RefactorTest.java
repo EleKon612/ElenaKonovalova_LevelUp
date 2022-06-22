@@ -1,27 +1,17 @@
 package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
+import static ru.levelp.at.lesson0507.selenium.page.objects.homework4.Exercise1Refactor.MAILRU_URL;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Exercise1Refactor;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Exercise1RefactorBasePage;
-import ru.levelp.at.lesson0507.selenium.page.objects.voids.UsersBugRedLoginRegistrationPage;
-
-import java.time.Duration;
-
-import static org.testng.Assert.assertTrue;
-import static ru.levelp.at.lesson0507.selenium.page.objects.homework4.Exercise1Refactor.MAILRU_URL;
 
 public class Exercise1RefactorTest {
     private WebDriver driver;

@@ -1,6 +1,9 @@
 package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
+import static org.testng.Assert.assertTrue;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -12,11 +15,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import ru.levelp.at.utils.SleepUtils;
-
-import java.time.Duration;
-
-import static org.testng.Assert.assertTrue;
 
 public class Exercise3RefactorTest {
 
