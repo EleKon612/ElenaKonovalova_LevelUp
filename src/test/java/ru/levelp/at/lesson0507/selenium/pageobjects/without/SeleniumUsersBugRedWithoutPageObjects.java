@@ -11,6 +11,8 @@ public class SeleniumUsersBugRedWithoutPageObjects extends AbstractSeleniumBaseT
 
     @Test
     public void registerUserTest() {
+        driver.navigate().to(USERS_BUGRED_LOGIN_REG_PAGE_URL);
+
         var username = FAKER.name().fullName();
         var email = FAKER.internet().emailAddress();
         var password = FAKER.internet().password();
