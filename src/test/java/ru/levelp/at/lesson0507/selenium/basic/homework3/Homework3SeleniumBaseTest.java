@@ -9,7 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-public class Homework3SeleniumBaseTest {
+public abstract class Homework3SeleniumBaseTest {
 
     public static final String MAILRU_URL = "https://mail.ru";
 

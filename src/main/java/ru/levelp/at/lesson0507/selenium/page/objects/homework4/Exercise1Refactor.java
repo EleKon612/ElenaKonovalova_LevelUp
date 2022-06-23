@@ -6,8 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class Exercise1Refactor extends Exercise1RefactorBasePage {
 
-    public static final String MAILRU_URL = "https://mail.ru";
-
     @FindBy(xpath = "//*[contains(@class, 'resplash-btn')]")
     private WebElement loginButton;
 
@@ -26,8 +24,49 @@ public class Exercise1Refactor extends Exercise1RefactorBasePage {
     @FindBy(xpath = "//*[text()='Sign in']")
     private WebElement signInButton;
 
-    @FindBy(xpath = "//*[@class='compose-button__wrapper']")
+    @FindBy(xpath = "//*[text()='Sign in']")
+    private WebElement inboxPage;
+
+    @FindBy(xpath = "//a[contains(@class, 'compose-button')]")
     private WebElement newLetterButton;
+
+    @FindBy(xpath = "//*[@class='container--zU301']")
+    private WebElement receiverField;
+
+    @FindBy(xpath = "//*[@name='Subject']")
+    private WebElement subjectField;
+
+    @FindBy(css = ".cke_editable")
+    private WebElement bodyField;
+
+    @FindBy(xpath = "//button[@data-test-id='save']")
+    private WebElement saveDraftButton;
+
+    @FindBy(xpath = "//button[@tabindex='700']")
+    private WebElement closeDraftButton;
+
+    @FindBy(xpath = "//a[@href='/drafts/']")
+    private WebElement draftsPage;
+
+    @FindBy(xpath = "//*[@class='ll-sj__normal']")
+    private WebElement lastDraftMessage;
+
+    @FindBy(xpath = "//button[@data-test-id='send']")
+    private WebElement sendDraftButton;
+
+    @FindBy(xpath = "//*[contains(@class, 'button2_close')]")
+    private WebElement crossButton;
+
+    @FindBy(xpath = "//span[text()='" + receiver + "']")
+    private WebElement ourDraftMessageReceiver;
+
+    @FindBy(xpath = "//*[text()='" + subject + "']")
+    private WebElement ourDraftMessageSubject;
+
+    @FindBy(xpath = "//*[text()='" + letterBody + "']")
+    private WebElement ourDraftMessageBody;
+
+    // llc__item_correspondent llc__content
 
     public Exercise1Refactor(WebDriver driver) {
         super(driver);
@@ -59,5 +98,41 @@ public class Exercise1Refactor extends Exercise1RefactorBasePage {
 
     public void clickNewLetterButton() {
         clickButton(newLetterButton);
+    }
+
+    public void insertReceiver(final String receiver) {
+        insertInputField(receiverField, receiver);
+    }
+
+    public void insertSubject(final String subject) {
+        insertInputField(subjectField, subject);
+    }
+
+    public void insertBody(final String letterBody) {
+        insertInputField(bodyField, letterBody);
+    }
+
+    public void clickSaveDraftButton() {
+        clickButton(saveDraftButton);
+    }
+
+    public void clickCloseDraftButton() {
+        clickButton(closeDraftButton);
+    }
+
+    public void clickOpenDraftsButton() {
+        clickButton(draftsPage);
+    }
+
+    public void tapLastDraftMessage() {
+        clickButton(lastDraftMessage);
+    }
+
+    public void clickSendDraftButton() {
+        clickButton(sendDraftButton);
+    }
+
+    public void clickCrossButton() {
+        clickButton(crossButton);
     }
 }

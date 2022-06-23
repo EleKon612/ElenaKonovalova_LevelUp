@@ -9,8 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Exercise1RefactorBasePage {
 
+    public static final String MAILRU_URL = "https://mail.ru";
+    protected static final String receiver = "elena.volnova@mail.ru";
+    protected static final String subject = "New TestLetter Subject";
+    protected static final String letterBody = "New TestLetter Body";
+
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    public WebDriverWait wait;
 
     protected Exercise1RefactorBasePage(WebDriver driver) {
         this.driver = driver;
