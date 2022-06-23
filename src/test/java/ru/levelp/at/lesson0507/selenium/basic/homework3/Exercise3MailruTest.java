@@ -2,43 +2,13 @@ package ru.levelp.at.lesson0507.selenium.basic.homework3;
 
 import static org.testng.Assert.assertTrue;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class Exercise3MailruTest {
-
-    private static final String MAILRU_URL = "https://mail.ru";
-
-    private WebDriver driver;
-
-    private WebDriverWait wait;
-
-    CharSequence testLetterReceiver = "elekon612@mail.ru";
-    CharSequence testLetterSubject = "Exercise3 Subject";
-    CharSequence testLetterBody = "Exercise3 Body";
-
-    @BeforeSuite
-    public void beforeSuite() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
+public class Exercise3MailruTest extends Homework3SeleniumBaseTest {
 
     @Test
     public void exercise3Test() {
@@ -67,15 +37,15 @@ public class Exercise3MailruTest {
         driver.switchTo().activeElement();
         WebElement insertReceivers = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(@class, 'container--H9L5q')]")));
-        insertReceivers.sendKeys(testLetterReceiver);
+        insertReceivers.sendKeys("elekon612@mail.ru");
         WebElement insertSubject = driver.findElement(By.xpath("//*[@name='Subject']"));
-        insertSubject.sendKeys(testLetterSubject);
+        insertSubject.sendKeys("Exercise3 Subject");
         WebElement insertBody = driver.findElement(By.cssSelector(".cke_editable"));
-        insertBody.sendKeys(testLetterBody);
+        insertBody.sendKeys("Exercise3 Body");
 
         // Отправить письмо
         wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//span[text()='Отправить']")));
+                .visibilityOfElementLocated(By.xpath("//button[@data-test-id='send']")));
         WebElement sentWindow = driver.switchTo().activeElement();
         sentWindow.sendKeys(Keys.COMMAND, Keys.ENTER);
 
@@ -86,7 +56,7 @@ public class Exercise3MailruTest {
 
         // Verify, что письмо появилось в папке входящие
         WebElement openInbox = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Входящие']")));
+                By.xpath("//div[contains(@class, 'nav__folder-name')]")));
         openInbox.click();
         WebElement expandSaved = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//span[text()='Exercise3 Subject']")));
@@ -104,16 +74,17 @@ public class Exercise3MailruTest {
         assertTrue(driver.findElement(By.xpath("//div[text()='Exercise3 Body']")).isEnabled());
 
         // Удалить письмо
-        WebElement deleteCurrentLetter = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//span[text()='Удалить']")));
+        WebElement deleteCurrentLetter = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//span[contains(@class, 'button2_delete')]")));
         deleteCurrentLetter.click();
 
         // Verify что письмо появилось в папке Корзина
-        WebElement returnTo = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//span[text()='Вернуться']")));
-        returnTo.click();
+        /*WebElement returnTo = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//span[contains(@class, 'button2')]")));
+        returnTo.click();*/
         WebElement openTrashBin = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//*[text()='Корзина']")));
+                By.xpath("//a[@href='/trash/']")));
+        //*[@id="sideBarContent"]/div/nav/a[10]
         openTrashBin.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//span[text()='Exercise3 Subject']")));
@@ -123,13 +94,8 @@ public class Exercise3MailruTest {
         WebElement dropDown = driver.findElement(By.xpath(
                 "//span[contains(@class, 'ph-dropdown-icon')]"));
         dropDown.click();
-        WebElement logout = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Выйти']")));
+        WebElement logout = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class, 'ph-item__hover-active')]")));
         logout.click();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
     }
 }
