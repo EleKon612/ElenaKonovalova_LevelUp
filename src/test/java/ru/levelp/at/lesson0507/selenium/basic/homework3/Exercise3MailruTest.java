@@ -74,8 +74,8 @@ public class Exercise3MailruTest extends Homework3SeleniumBaseTest {
         assertTrue(driver.findElement(By.xpath("//div[text()='Exercise3 Body']")).isEnabled());
 
         // Удалить письмо
-        WebElement deleteCurrentLetter = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//span[contains(@class, 'button2')]")));
+        WebElement deleteCurrentLetter = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//span[contains(@class, 'button2_delete')]")));
         deleteCurrentLetter.click();
 
         // Verify что письмо появилось в папке Корзина
