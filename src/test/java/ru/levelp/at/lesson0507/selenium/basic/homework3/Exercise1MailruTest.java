@@ -17,29 +17,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class Exercise1MailruTest {
-
-    private static final String MAILRU_URL = "https://mail.ru";
-
-    private WebDriver driver;
-
-    private WebDriverWait wait;
-
-    CharSequence testLetterReceiver = "elena.volnova@mail.ru";
-    CharSequence testLetterSubject = "New TestLetter Subject";
-    CharSequence testLetterBody = "New TestLetter Body";
-
-    @BeforeSuite
-    public void beforeSuite() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
+public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
 
     @Test
     public void exercise1Test() {
@@ -75,38 +53,38 @@ public class Exercise1MailruTest {
         // Ввести адресата, тему и тело письма
         WebElement insertReceivers = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(@class, 'container--H9L5q')]")));
-        insertReceivers.sendKeys(testLetterReceiver);
+        insertReceivers.sendKeys("elena.volnova@mail.ru");
         WebElement insertSubject = driver.findElement(By.xpath("//*[@name='Subject']"));
-        insertSubject.sendKeys(testLetterSubject);
+        insertSubject.sendKeys("New TestLetter Subject");
         WebElement insertBody = driver.findElement(By.cssSelector(".cke_editable"));
-        insertBody.sendKeys(testLetterBody);
+        insertBody.sendKeys("New TestLetter Body");
 
         // Сохранить и закрыть черновик
-        WebElement saveDraft = driver.findElement(By.xpath("//*[text()='Сохранить']"));
+        WebElement saveDraft = driver.findElement(By.xpath("//button[@data-test-id='save']"));
         saveDraft.click();
-        WebElement closeDraft = driver.findElement(By.cssSelector(".container--2lPGK"));
+        WebElement closeDraft = driver.findElement(By.xpath("//button[@tabindex='700']"));
         closeDraft.click();
 
         // Открыть черновики
         WebElement openDrafts = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//div[text()='Черновики']")));
+                .visibilityOfElementLocated(By.xpath("//a[@href='/drafts/']")));
         openDrafts.click();
 
         // Проверить, что письмо сохранилось в черновиках
         wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Черновики']")));
-        assertTrue(driver.findElement(By.xpath("//span[text()='New TestLetter Subject']")).isDisplayed());
-        driver.findElement(By.xpath("//span[text()='New TestLetter Subject']")).click();
+                By.xpath("//*[text()='New TestLetter Subject']")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).isDisplayed());
+        driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).click();
 
         // Проверить контент, адресата и тему письма
         wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//span[text()='Отправить']")));
+                .visibilityOfElementLocated(By.xpath("//button[@data-test-id='send']")));
         assertTrue(driver.findElement(By.xpath("//*[@value='New TestLetter Subject']")).isDisplayed());
         assertTrue(driver.findElement(By.xpath("//span[text()='elena.volnova@mail.ru']")).isDisplayed());
         assertTrue(driver.findElement(By.xpath("//div[text()='New TestLetter Body']")).isDisplayed());
 
         // Отправить сохраненный черновик
-        driver.findElement(By.xpath("//span[text()='Отправить']")).click();
+        driver.findElement(By.xpath("//button[@data-test-id='send']")).click();
 
         // Закрыть окно "Сообщение отправлено"
         WebElement crossButton = wait.until(ExpectedConditions
@@ -114,13 +92,17 @@ public class Exercise1MailruTest {
         crossButton.click();
 
         // Проверить, что письмо изчезло из черновиков (письмо не исчезает!!! поэтому assertFalse закомментирован)
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Черновики']")));
+        // wait.until(ExpectedConditions.visibilityOfElementLocated(
+        //         By.xpath("//a[@href='/drafts/']")));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                By.xpath("//*[text()='New TestLetter Subject']")));
+        WebElement lastDraftLetter = driver.findElement(By.xpath("//*[@class='ll-sj__normal']"));
+        assertFalse(lastDraftLetter.getText().contains("New TestLetter Subject"));
         // assertFalse(driver.findElement(By.xpath("//span[text()='New TestLetter Subject']")).isDisplayed());
 
         // Перейти в "Отправленные"
         WebElement openSent = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Отправленные']")));
+                By.xpath("//a[@href='/sent/']")));
         openSent.click();
         wait.until(ExpectedConditions.urlContains("sent"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='New TestLetter Subject']")));
@@ -139,12 +121,7 @@ public class Exercise1MailruTest {
                 "//span[contains(@class, 'ph-dropdown-icon')]"));
         dropDown.click();
         WebElement logout = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Выйти']")));
+                By.xpath("//div[contains(@class, 'ph-item__hover-active')]")));
         logout.click();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
     }
 }
