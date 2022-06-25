@@ -24,7 +24,8 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
         // Открыть сайт mail.ru и нажать кнопку "Войти"
         driver.navigate().to(MAILRU_URL);
 
-        WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, 'resplash-btn')]"));
+        WebElement enterButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[contains(@class, 'resplash-btn')]")));
         enterButton.click();
 
         // Переключиться на логин фрейм

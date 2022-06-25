@@ -14,7 +14,10 @@ public class Exercise3MailruTest extends Homework3SeleniumBaseTest {
     public void exercise3Test() {
         // Войти в почту
         driver.navigate().to(MAILRU_URL);
-        WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, 'resplash-btn')]"));
+        /*WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, 'resplash-btn')]"));
+        enterButton.click();*/
+        WebElement enterButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[contains(@class, 'resplash-btn')]")));
         enterButton.click();
         WebElement loginFrame = driver.findElement(By.xpath(
             "//div/iframe[@class='ag-popup__frame__layout__iframe']"));
