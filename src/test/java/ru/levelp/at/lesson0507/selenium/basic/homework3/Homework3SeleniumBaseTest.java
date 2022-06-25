@@ -26,11 +26,11 @@ public class Homework3SeleniumBaseTest {
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    /*@AfterMethod
+    @AfterMethod
     public void tearDown() {
         driver.quit();
-    }*/
+    }
 }

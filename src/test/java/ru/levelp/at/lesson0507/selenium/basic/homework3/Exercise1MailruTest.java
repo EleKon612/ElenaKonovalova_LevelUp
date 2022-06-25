@@ -91,7 +91,8 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
                 .visibilityOfElementLocated(By.xpath("//*[contains(@class, 'button2_close')]")));
         crossButton.click();
 
-        // Проверить, что письмо изчезло из черновиков (assert проходит, если в черновиках есть последнее письмо с отличной от тестового письма темой)
+        // Проверить, что письмо изчезло из черновиков (assert проходит, если в черновиках есть последнее письмо
+        // с отличной от тестового письма темой)
         wait.until(ExpectedConditions.invisibilityOfElementLocated(
                 By.xpath("//*[text()='New TestLetter Subject']")));
         WebElement lastDraftLetter = driver.findElement(By.xpath("//*[@class='ll-sj__normal']"));

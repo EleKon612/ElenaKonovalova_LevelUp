@@ -79,9 +79,6 @@ public class Exercise3MailruTest extends Homework3SeleniumBaseTest {
         deleteCurrentLetter.click();
 
         // Verify что письмо появилось в папке Корзина
-        /*WebElement returnTo = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//span[contains(@class, 'button2')]")));
-        returnTo.click();*/
         WebElement openTrashBin = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//a[@href='/trash/']")));
         //*[@id="sideBarContent"]/div/nav/a[10]
