@@ -12,25 +12,19 @@ import java.time.Duration;
 
 public abstract class Homework4RefactorBaseTest {
 
-    public static final String MAILRU_URL = "https://mail.ru";
-    public static WebElement lastDraftMessage;
-    public static WebElement ourDraftMessageReceiver;
-
-    public static WebElement ourDraftMessageSubject;
-
-    public static WebElement ourDraftMessageBody;
-    String username = "elekon612@mail.ru";
-    String password = "Selenium2022";
-    CharSequence inboxURL = "https://e.mail.ru/inbox";
-    CharSequence draftsURL = "https://e.mail.ru/drafts";
-    protected static String receiver = "elena.volnova@mail.ru";
-    String subject = "New TestLetter Subject";
-    String letterBody = "New TestLetter Body";
+    protected final String inboxURL = "https://e.mail.ru/inbox";
+    protected final String draftsURL = "https://e.mail.ru/drafts";
+    protected final String sentURL = "https://e.mail.ru/sent";
+    protected final String username = "elekon612@mail.ru";
+    protected final String password = "Selenium2022";
+    protected final String receiver = "elena.volnova@mail.ru";
+    protected final String subject = "New TestLetter Subject";
+    protected final String letterBody = "New TestLetter Body";
 
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    protected WebElement inboxPage;
+    // protected static WebElement inboxPage;
 
     @BeforeSuite
     public void beforeSuite() {

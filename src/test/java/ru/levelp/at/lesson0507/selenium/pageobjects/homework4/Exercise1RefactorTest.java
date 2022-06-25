@@ -1,31 +1,17 @@
 package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
-import static org.testng.Assert.*;
-import static ru.levelp.at.lesson0507.selenium.page.objects.homework4.Exercise1Refactor.MAILRU_URL;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Exercise1Refactor;
-import ru.levelp.at.utils.SleepUtils;
+
+import static org.testng.Assert.*;
 
 public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
 
     @Test
     public void exercise1Test() {
         Exercise1Refactor mailRu = new Exercise1Refactor(driver);
-        driver.navigate().to(MAILRU_URL);
+        mailRu.openMailru();
 
         mailRu.clickLoginButton();
         mailRu.switchToLoginFrame();
@@ -34,35 +20,45 @@ public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
         mailRu.insertPassword(password);
         mailRu.clickSignInButton();
 
-        SleepUtils.sleep(3000);
-        // mailRu.wait.until(ExpectedConditions.visibilityOf(inboxPage));
-        assertTrue(driver.getCurrentUrl().contains(inboxURL));
+        mailRu.waitUntilVisibilityOfNewLetterButton();
+        assertTrue(mailRu.getCurrentURL().contains(inboxURL));
 
         mailRu.clickNewLetterButton();
-        driver.switchTo().activeElement();
+        mailRu.switchToActiveElement();
         mailRu.insertReceiver(receiver);
         mailRu.insertSubject(subject);
         mailRu.insertBody(letterBody);
         mailRu.clickSaveDraftButton();
         mailRu.clickCloseDraftButton();
+        mailRu.clickOpenDraftsPage();
 
-        mailRu.clickOpenDraftsButton();
-        SleepUtils.sleep(3000);
-        // mailRu.wait.until(ExpectedConditions.visibilityOf(draftsPage));
-        // assertTrue(lastDraftMessage.getText().contains(subject));
+        // Проверить, что получатель,тема и тело последнего письма (первого найденного элемента "письмо") в черновиках совпадает
+        // с нашими получателем, темой и телом
+        var actualDraftMessageReceiver = mailRu.getReceiverOfLastDraftMessage();
+        var actualDraftMessageSubject = mailRu.getSubjectOfLastDraftMessage();
+        var actualDraftMessageBody = mailRu.getBodyOfLastDraftMessage();
+        assertEquals(actualDraftMessageReceiver, receiver);
+        assertEquals(actualDraftMessageSubject, subject);
+        assertTrue(actualDraftMessageBody.contains(letterBody));
 
-        mailRu.tapLastDraftMessage();
-        SleepUtils.sleep(3000);
-        // mailRu.wait.until(ExpectedConditions.visibilityOf(sendDraftButton));
-        // assertTrue(ourDraftMessageReceiver.isDisplayed());
-        // assertTrue(ourDraftMessageSubject.isDisplayed());
-        // assertTrue(ourDraftMessageBody.isDisplayed());
-
+        mailRu.clickOpenLastDraftMessage();
+        mailRu.waitUntilSendDraftButtonToBeClickable();
         mailRu.clickSendDraftButton();
         mailRu.clickCrossButton();
-        // wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[text()='New TestLetter Subject']")));
+        mailRu.waitUntilInvisibilityOfTestMessageSubject();
         // assertFalse(lastDraftMessage.getText().contains(subject));
 
-        
+        mailRu.clickOpenSentPage();
+        mailRu.waitUntilURLContainsSent();
+        mailRu.waitUntilVisibilityOfTestMessageSubject();
+        // assertTrue(lastSentMessage.getText().contains(subject));
+        mailRu.clickOpenLastSentMessage();
+        mailRu.waitUntilVisibilityOfTestMessageBody();
+        // assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).isDisplayed());
+        // assertTrue(driver.findElement(By.xpath("//span[text()='elena.volnova@mail.ru']")).isDisplayed());
+        // assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Body']")).isDisplayed());
+
+        mailRu.clickPhDropdown();
+        mailRu.clickLogoutButton();
     }
 }
