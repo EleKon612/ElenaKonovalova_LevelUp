@@ -1,23 +1,15 @@
 package ru.levelp.at.lesson0507.selenium.basic.homework3;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
-
-public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
+public class Exercise1MailruTestCOPY extends Homework3SeleniumBaseTest {
 
     @Test
     public void exercise1Test() {
@@ -42,8 +34,6 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
 
         // Дождаться загрузки страницы "Входящие" убедиться, что она открылась, и нажать кнопку "Написать письмо"
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='/inbox/']")));
-        driver.getCurrentUrl();
-        assertTrue(driver.getCurrentUrl().contains("https://e.mail.ru/inbox"));
         WebElement newLetterButton = driver.findElement(By.xpath("//a[contains(@class, 'compose-button')]"));
         newLetterButton.click();
 
@@ -73,20 +63,19 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
         // Проверить, что письмо сохранилось в черновиках
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[text()='New TestLetter Subject']")));
-        assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).isDisplayed());
         driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).click();
 
         // Проверить контент, адресата и тему письма
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//button[@data-test-id='send']")));
-        assertTrue(driver.findElement(By.xpath("//*[@value='New TestLetter Subject']")).isDisplayed());
-        assertTrue(driver.findElement(By.xpath("//span[text()='elena.volnova@mail.ru']")).isDisplayed());
-        assertTrue(driver.findElement(By.xpath("//div[text()='New TestLetter Body']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//span[@class='llc__subject']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'llc__item_correspondent')]")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//span[@class='llc__snippet']")).isDisplayed());
 
         // Отправить сохраненный черновик
         driver.findElement(By.xpath("//button[@data-test-id='send']")).click();
 
-        // Закрыть окно "Сообщение отправлено"
+        /*// Закрыть окно "Сообщение отправлено"
         WebElement crossButton = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//*[contains(@class, 'button2_close')]")));
         crossButton.click();
@@ -119,6 +108,6 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
         dropDown.click();
         WebElement logout = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//div[contains(@class, 'ph-item__hover-active')]")));
-        logout.click();
+        logout.click();*/
     }
 }
