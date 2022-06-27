@@ -45,7 +45,8 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='/inbox/']")));
         driver.getCurrentUrl();
         assertTrue(driver.getCurrentUrl().contains("https://e.mail.ru/inbox"));
-        WebElement newLetterButton = driver.findElement(By.xpath("//a[contains(@class, 'compose-button')]"));
+        WebElement newLetterButton = driver.findElement(
+                By.xpath("//a[contains(@class, 'compose-button')]"));
         newLetterButton.click();
 
         // Переключиться на окно создания письма
@@ -104,7 +105,8 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
                 By.xpath("//a[@href='/sent/']")));
         openSent.click();
         wait.until(ExpectedConditions.urlContains("sent"));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='New TestLetter Subject']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[text()='New TestLetter Subject']")));
 
         // Verify, что письмо появилось в папке отправленные, открыть его и проверить содержимое
         assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).isDisplayed());
