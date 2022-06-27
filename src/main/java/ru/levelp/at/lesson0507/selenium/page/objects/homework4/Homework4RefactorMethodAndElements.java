@@ -1,5 +1,6 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.homework4;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,6 +36,8 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
     private WebElement draftsPage;
     @FindBy(xpath = "//div[contains(@class, 'llc__content')]")
     private WebElement lastMessage;
+    @FindBy(xpath = "//div[contains(@class, 'mt-h-c__item_snippet')]")
+    private WebElement selfMessagesInInbox;
     @FindBy(xpath = "//span[@class='ll-crpt']")
     private WebElement lastMessageReceiver;
     @FindBy(xpath = "//span[@class='ll-sj__normal']")
@@ -45,8 +48,18 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
     private WebElement sendLetterButton;
     @FindBy(xpath = "//*[contains(@class, 'button2_close')]")
     private WebElement crossButton;
+    @FindBy(xpath = "//*[contains(@class, 'button2_delete')]")
+    private WebElement deleteButton;
+    @FindBy(xpath = "//*[contains(@class, 'button2_arrow-back')]")
+    private WebElement returnButton;
     @FindBy(xpath = "//a[@href='/sent/']")
     private WebElement sentPage;
+    @FindBy(xpath = "//a[@href='/1/']")
+    private WebElement testPage;
+    @FindBy(xpath = "//a[@href='/inbox/']")
+    private WebElement inboxPage;
+    @FindBy(xpath = "//a[@href='/trash/']")
+    private WebElement trashBinPage;
     @FindBy(xpath = "//span[contains(@class, 'ph-dropdown-icon')]")
     private WebElement phDropdown;
     @FindBy(xpath = "//div[contains(@class, 'ph-item__hover-active')]")
@@ -56,8 +69,12 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
         super(driver);
     }
 
-    public void openMailru() {
-        driver.navigate().to(mailruURL);
+    public void openMailRu() {
+        openURL(mailRuURL);
+    }
+
+    public void waitUntilFullLoadingOfPage() {
+        driver.findElement(By.tagName("html"));
     }
 
     public void switchToLoginFrame() {
@@ -84,28 +101,12 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
         insertInputField(bodyField, letterBody);
     }
 
+    public void waitUntilFullLoadingOfMailru() {
+        waitUntilStalenessOfElement(phDropdown);
+    }
+
     public void waitUntilVisibilityOfNewLetterButton() {
         waitUntilVisibilityOfElement(newLetterButton);
-    }
-
-    public void waitUntilVisibilityOfTestMessageSubject(WebElement subjectWebElement) {
-        waitUntilVisibilityOfElement(subjectWebElement);
-    }
-
-    public void waitUntilVisibilityOfTestMessageBody(final WebElement bodyWebElement) {
-        waitUntilVisibilityOfElement(bodyWebElement);
-    }
-
-    public void waitUntilVisibilityOfLastMessageSubject() {
-        waitUntilVisibilityOfElement(lastMessageSubject);
-    }
-
-    public void waitUntilLastMessageSubjectToBeClickable() {
-        waitUntilElementToBeClickable(lastMessageSubject);
-    }
-
-    public void waitUntilInvisibilityOfTestMessageSubject(final WebElement subjectWebElement) {
-        waitUntilInvisibilityOfElement(subjectWebElement);
     }
 
     public void waitUntilLastLetterIsClickable() {
@@ -118,6 +119,18 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
 
     public void waitUntilURLContainsDrafts() {
         waitUntilUrlContains(draftsURL);
+    }
+
+    public void waitUntilStalenessOfphDropdown() {
+        waitUntilStalenessOfElement(phDropdown);
+    }
+
+    public void waitUntilStalenessOfLastMessage() {
+        waitUntilStalenessOfElement(lastMessage);
+    }
+
+    public void waitUntilStalenessOfLoginButton() {
+        waitUntilStalenessOfElement(loginButton);
     }
 
     public void clickLoginButton() {
@@ -160,8 +173,28 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
         clickButton(crossButton);
     }
 
+    public void clickDeleteButton() {
+        clickButton(deleteButton);
+    }
+
+    public void clickReturnButton() {
+        clickButton(returnButton);
+    }
+
     public void clickOpenSentPage() {
         clickButton(sentPage);
+    }
+
+    public void clickOpenTestFolderPage() {
+        clickButton(testPage);
+    }
+
+    public void clickSelfMessagesInInboxPage() {
+        clickButton(selfMessagesInInbox);
+    }
+
+    public void clickOpenTrashBinPage() {
+        clickButton(trashBinPage);
     }
 
     public void clickPhDropdown() {
@@ -173,10 +206,6 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
     }
 
     public String getSubjectOfLastMessage() {
-        return wait.until(ExpectedConditions.visibilityOf(lastMessageSubject)).getText();
-    }
-
-    public String getSubjectOfLastSentMessage() {
         return wait.until(ExpectedConditions.visibilityOf(lastMessageSubject)).getText();
     }
 
