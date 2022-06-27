@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMethodAndElements;
+import ru.levelp.at.utils.SleepUtils;
 
 public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
 
@@ -16,11 +17,13 @@ public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
     public void exercise2Test() {
 
         final String receiver = "elekon612@mail.ru";
-        final String subject = "Test";
+        final String receiverInbox = "Elena Konovalova";
+        final String subject = "Тест";
         final String letterBody = "Люблю тебя, Петра творенье";
 
         Homework4RefactorMethodAndElements mailRu = new Homework4RefactorMethodAndElements(driver);
-        mailRu.openMailru();
+        mailRu.openMailRu();
+        SleepUtils.sleep(3000);
         mailRu.clickLoginButton();
         mailRu.switchToLoginFrame();
         mailRu.insertUsername(username);
@@ -38,36 +41,26 @@ public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
         mailRu.clickSendLetterButton();
         mailRu.clickCrossButton();
 
-        // Verify, что письмо появилось в папке отправленные
-        WebElement openSent = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Отправленные']")));
-        openSent.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//span[text()='Self: Тест']")));
-        assertTrue(driver.findElement(By.xpath("//*[text()='Self: Тест']")).isDisplayed());
+        mailRu.clickOpenSentPage();
+        mailRu.waitUntilURLContainsSent();
+        mailRu.waitUntilLastLetterIsClickable();
+        var lastSentMessageReceiver = mailRu.getReceiverOfLastMessage();
+        var lastSentMessageSubject = mailRu.getSubjectOfLastMessage();
+        var lastSentMessageBody = mailRu.getBodyOfLastMessage();
+        assertTrue(lastSentMessageReceiver.contains(receiver));
+        assertTrue(lastSentMessageSubject.contains(subject));
+        assertTrue(lastSentMessageBody.contains(letterBody));
 
-        // Verify, что письмо появилось в папке «Тест»
-        WebElement openSaved = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Тест']")));
-        openSaved.click();
-        WebElement sentLetterInTest = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-                "//span[text()='Тест']")));
-        assertTrue(driver.findElement(By.xpath("//span[text()='Тест']")).isDisplayed());
+        mailRu.clickOpenTestFolderPage();
+        mailRu.waitUntilLastLetterIsClickable();
+        var lastReceivedMessageReceiver = mailRu.getReceiverOfLastMessage();
+        var lastReceivedMessageSubject = mailRu.getSubjectOfLastMessage();
+        var lastReceivedMessageBody = mailRu.getBodyOfLastMessage();
+        assertTrue(lastReceivedMessageReceiver.contains(receiverInbox));
+        assertTrue(lastReceivedMessageSubject.contains(subject));
+        assertTrue(lastReceivedMessageBody.contains(letterBody));
 
-        // Verify контент, адресата и тему письма (должно совпадать с пунктом 3)
-        sentLetterInTest.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div/h2[text()='Тест']")));
-        assertTrue(driver.findElement(By.xpath("//div/h2[text()='Тест']")).isEnabled());
-        assertTrue(driver.findElement(By.xpath("//*[@title='elekon612@mail.ru']")).isEnabled());
-        assertTrue(driver.findElement(By.xpath("//div[text()='Я помню чудное мгновенье']")).isEnabled());
-
-        //  Выйти из учетной записи
-        WebElement dropDown = driver.findElement(By.xpath(
-                "//span[contains(@class, 'ph-dropdown-icon')]"));
-        dropDown.click();
-        WebElement logout = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[text()='Выйти']")));
-        logout.click();
+        mailRu.clickPhDropdown();
+        mailRu.clickLogoutButton();
     }
 }

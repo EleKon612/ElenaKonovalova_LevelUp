@@ -10,12 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Homework4RefactorBasePage {
 
-    protected String mailruURL = "https://mail.ru";
-    // protected final String receiver = "elekon612@yahoo.com";
-    // protected final String subject = "New TestLetter Subject";
-    // protected final String letterBody = "New TestLetter Body";
-
-    protected final String inboxURL = "https://e.mail.ru/inbox";
+    protected String mailRuURL = "https://mail.ru";
     protected final String draftsURL = "https://e.mail.ru/drafts";
     protected final String sentURL = "https://e.mail.ru/sent";
 
@@ -40,8 +35,8 @@ public abstract class Homework4RefactorBasePage {
         return driver.getCurrentUrl();
     }
 
-    public String getTextFromElementSubject() {
-        return driver.getCurrentUrl();
+    protected void openURL(final String url) {
+        driver.navigate().to(url);
     }
 
     protected void insertInputField(final WebElement insertField, final CharSequence text) {
@@ -60,15 +55,15 @@ public abstract class Homework4RefactorBasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    protected void waitUntilInvisibilityOfElement(final WebElement webElement) {
-        wait.until(ExpectedConditions.invisibilityOf(webElement));
-    }
-
     protected void waitUntilElementToBeClickable(final WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     protected void waitUntilUrlContains(final String text) {
         wait.until(ExpectedConditions.urlContains(text));
+    }
+
+    protected void waitUntilStalenessOfElement(final WebElement webElement) {
+        wait.until(ExpectedConditions.stalenessOf(webElement));
     }
 }

@@ -6,6 +6,7 @@ import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMethodAndElements;
+import ru.levelp.at.utils.SleepUtils;
 
 public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
 
@@ -16,7 +17,8 @@ public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
         final String letterBody = "New TestLetter Body";
 
         Homework4RefactorMethodAndElements mailRu = new Homework4RefactorMethodAndElements(driver);
-        mailRu.openMailru();
+        mailRu.openMailRu();
+        SleepUtils.sleep(3000);
         mailRu.clickLoginButton();
         mailRu.switchToLoginFrame();
         mailRu.insertUsername(username);
@@ -46,6 +48,7 @@ public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
         mailRu.clickSendLetterButton();
         mailRu.clickCrossButton();
         mailRu.waitUntilLastLetterIsClickable();
+
         // Не срабатывает assertFalse (пишет Actual: True)
         // mailRu.waitUntilVisibilityOfLastMessageSubject();
         // var lastSentMessageSubject = mailRu.getSubjectOfLastSentMessage();
