@@ -1,8 +1,6 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.homework4;
 
 import java.time.Duration;
-
-import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,12 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class Exercise1RefactorBasePage {
+public abstract class Homework4RefactorBasePage {
 
-    protected String MAILRU_URL = "https://mail.ru";
-    protected final String receiver = "elena.volnova@mail.ru";
-    protected final String subject = "New TestLetter Subject";
-    protected final String letterBody = "New TestLetter Body";
+    protected String mailruURL = "https://mail.ru";
+    // protected final String receiver = "elekon612@yahoo.com";
+    // protected final String subject = "New TestLetter Subject";
+    // protected final String letterBody = "New TestLetter Body";
 
     protected final String inboxURL = "https://e.mail.ru/inbox";
     protected final String draftsURL = "https://e.mail.ru/drafts";
@@ -24,10 +22,14 @@ public abstract class Exercise1RefactorBasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    protected Exercise1RefactorBasePage(WebDriver driver) {
+    protected Homework4RefactorBasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    public void findElement(final String elementName) {
+        driver.findElement(By.name(elementName));
     }
 
     public void switchToActiveElement() {
@@ -59,7 +61,7 @@ public abstract class Exercise1RefactorBasePage {
     }
 
     protected void waitUntilInvisibilityOfElement(final WebElement webElement) {
-        wait.until(ExpectedConditions.visibilityOf(webElement));
+        wait.until(ExpectedConditions.invisibilityOf(webElement));
     }
 
     protected void waitUntilElementToBeClickable(final WebElement webElement) {

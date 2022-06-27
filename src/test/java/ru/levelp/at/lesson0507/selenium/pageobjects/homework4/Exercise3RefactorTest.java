@@ -1,49 +1,27 @@
 package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMethodAndElements;
 
-public class Exercise3RefactorTest {
+public class Exercise3RefactorTest extends Homework4RefactorBaseTest {
 
-    private static final String MAILRU_URL = "https://mail.ru";
-
-    private WebDriver driver;
-
-    private WebDriverWait wait;
-
-    CharSequence testLetterReceiver = "elekon612@mail.ru";
-    CharSequence testLetterSubject = "Exercise3 Subject";
-    CharSequence testLetterBody = "Exercise3 Body";
-
-    @BeforeSuite
-    public void beforeSuite() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
+    private final String receiver = "elekon612@mail.ru";
+    private final String subject = "This is a cool letter";
+    private final String letterBody = "Перемен требуют наши сердца";
 
     @Test
     public void exercise3Test() {
-        // Войти в почту
-        driver.navigate().to(MAILRU_URL);
+        Homework4RefactorMethodAndElements mailRu = new Homework4RefactorMethodAndElements(driver);
+        mailRu.openMailru();
+
         WebElement enterButton = driver.findElement(By.xpath("//*[contains(@class, 'resplash-btn')]"));
         enterButton.click();
         WebElement loginFrame = driver.findElement(By.xpath(
@@ -67,11 +45,11 @@ public class Exercise3RefactorTest {
         driver.switchTo().activeElement();
         WebElement insertReceivers = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(@class, 'container--H9L5q')]")));
-        insertReceivers.sendKeys(testLetterReceiver);
+        insertReceivers.sendKeys(receiver);
         WebElement insertSubject = driver.findElement(By.xpath("//*[@name='Subject']"));
-        insertSubject.sendKeys(testLetterSubject);
+        insertSubject.sendKeys(subject);
         WebElement insertBody = driver.findElement(By.cssSelector(".cke_editable"));
-        insertBody.sendKeys(testLetterBody);
+        insertBody.sendKeys(letterBody);
 
         // Отправить письмо
         wait.until(ExpectedConditions
@@ -126,10 +104,5 @@ public class Exercise3RefactorTest {
         WebElement logout = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//div[text()='Выйти']")));
         logout.click();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
     }
 }
