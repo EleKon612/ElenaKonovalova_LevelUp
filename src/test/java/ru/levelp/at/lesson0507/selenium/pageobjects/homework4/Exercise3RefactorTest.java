@@ -4,13 +4,8 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMethodAndElements;
-import ru.levelp.at.utils.SleepUtils;
 
 public class Exercise3RefactorTest extends Homework4RefactorBaseTest {
 
@@ -23,7 +18,7 @@ public class Exercise3RefactorTest extends Homework4RefactorBaseTest {
 
         Homework4RefactorMethodAndElements mailRu = new Homework4RefactorMethodAndElements(driver);
         mailRu.openMailRu();
-        SleepUtils.sleep(3000);
+        // SleepUtils.sleep(2000);
         mailRu.clickLoginButton();
         mailRu.switchToLoginFrame();
         mailRu.insertUsername(username);
@@ -42,7 +37,7 @@ public class Exercise3RefactorTest extends Homework4RefactorBaseTest {
         mailRu.clickCrossButton();
 
         mailRu.clickSelfMessagesInInboxPage();
-        mailRu.waitUntilLastLetterIsClickable();
+        mailRu.waitUntilVisibilityOfTestMessageSubjectExercise3();
         var lastInboxMessageReceiver = mailRu.getReceiverOfLastMessage();
         var lastInboxMessageSubject = mailRu.getSubjectOfLastMessage();
         var lastInboxMessageBody = mailRu.getBodyOfLastMessage();
@@ -54,6 +49,7 @@ public class Exercise3RefactorTest extends Homework4RefactorBaseTest {
         mailRu.clickDeleteButton();
         mailRu.clickReturnButton();
         mailRu.clickOpenTrashBinPage();
+        mailRu.waitUntilURLContainsTrash();
         mailRu.waitUntilLastLetterIsClickable();
         var lastTrashMessageSubject = mailRu.getSubjectOfLastMessage();
         assertTrue(lastTrashMessageSubject.contains(subject));

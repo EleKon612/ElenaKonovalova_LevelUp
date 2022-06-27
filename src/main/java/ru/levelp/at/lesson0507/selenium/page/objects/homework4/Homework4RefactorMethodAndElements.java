@@ -1,6 +1,5 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.homework4;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +41,12 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
     private WebElement lastMessageReceiver;
     @FindBy(xpath = "//span[@class='ll-sj__normal']")
     private WebElement lastMessageSubject;
+    @FindBy(xpath = "//*[text()='" + subject1 + "']")
+    private WebElement testMessageSubjectExercise1;
+    @FindBy(xpath = "//*[text()='" + subject2 + "']")
+    private WebElement testMessageSubjectExercise2;
+    @FindBy(xpath = "//*[text()='" + subject3 + "']")
+    private WebElement testMessageSubjectExercise3;
     @FindBy(xpath = "//span[@class='llc__snippet']")
     private WebElement lastMessageBody;
     @FindBy(xpath = "//button[@data-test-id='send']")
@@ -73,10 +78,6 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
         openURL(mailRuURL);
     }
 
-    public void waitUntilFullLoadingOfPage() {
-        driver.findElement(By.tagName("html"));
-    }
-
     public void switchToLoginFrame() {
         switchToFrame(loginFrame);
     }
@@ -101,12 +102,20 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
         insertInputField(bodyField, letterBody);
     }
 
-    public void waitUntilFullLoadingOfMailru() {
-        waitUntilStalenessOfElement(phDropdown);
-    }
-
     public void waitUntilVisibilityOfNewLetterButton() {
         waitUntilVisibilityOfElement(newLetterButton);
+    }
+
+    public void waitUntilVisibilityOfTestMessageSubjectExercise2() {
+        waitUntilVisibilityOfElement(testMessageSubjectExercise2);
+    }
+
+    public void waitUntilVisibilityOfTestMessageSubjectExercise3() {
+        waitUntilVisibilityOfElement(testMessageSubjectExercise3);
+    }
+
+    public void waitUntilInvisibilityOfTestMessage1() {
+        waitUntilInvisibilityOfElement(testMessageSubjectExercise1);
     }
 
     public void waitUntilLastLetterIsClickable() {
@@ -121,16 +130,12 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
         waitUntilUrlContains(draftsURL);
     }
 
-    public void waitUntilStalenessOfphDropdown() {
-        waitUntilStalenessOfElement(phDropdown);
+    public void waitUntilURLContainsTrash() {
+        waitUntilUrlContains(trashURL);
     }
 
-    public void waitUntilStalenessOfLastMessage() {
-        waitUntilStalenessOfElement(lastMessage);
-    }
-
-    public void waitUntilStalenessOfLoginButton() {
-        waitUntilStalenessOfElement(loginButton);
+    public void waitUntilURLContainsTestFolderIndex() {
+        waitUntilUrlContains(testFolderURL);
     }
 
     public void clickLoginButton() {
