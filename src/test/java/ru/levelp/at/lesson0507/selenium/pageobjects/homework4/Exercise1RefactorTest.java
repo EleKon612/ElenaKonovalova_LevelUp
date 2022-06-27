@@ -1,25 +1,28 @@
 package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
-import org.openqa.selenium.By;
-import org.testng.annotations.Test;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Exercise1Refactor;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
-import static org.testng.Assert.*;
+import org.testng.annotations.Test;
+import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMethodAndElements;
 
 public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
 
     @Test
     public void exercise1Test() {
-        Exercise1Refactor mailRu = new Exercise1Refactor(driver);
-        mailRu.openMailru();
+        final String receiver = "elekon612@yahoo.com";
+        final String subject = "New TestLetter Subject";
+        final String letterBody = "New TestLetter Body";
 
+        Homework4RefactorMethodAndElements mailRu = new Homework4RefactorMethodAndElements(driver);
+        mailRu.openMailru();
         mailRu.clickLoginButton();
         mailRu.switchToLoginFrame();
         mailRu.insertUsername(username);
         mailRu.clickEnterPasswordButton();
         mailRu.insertPassword(password);
         mailRu.clickSignInButton();
-
         mailRu.waitUntilVisibilityOfNewLetterButton();
         assertTrue(mailRu.getCurrentURL().contains(inboxURL));
 
@@ -31,32 +34,33 @@ public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
         mailRu.clickSaveDraftButton();
         mailRu.clickCloseDraftButton();
         mailRu.clickOpenDraftsPage();
+        mailRu.waitUntilURLContainsDrafts();
+        var lastMessageReceiver = mailRu.getReceiverOfLastMessage();
+        var lastMessageSubject = mailRu.getSubjectOfLastMessage();
+        var lastMessageBody = mailRu.getBodyOfLastMessage();
+        assertTrue(lastMessageReceiver.contains(receiver));
+        assertTrue(lastMessageSubject.contains(subject));
+        assertTrue(lastMessageBody.contains(letterBody));
 
-        // Проверить, что получатель,тема и тело последнего письма (первого найденного элемента "письмо") в черновиках совпадает
-        // с нашими получателем, темой и телом
-        var actualDraftMessageReceiver = mailRu.getReceiverOfLastDraftMessage();
-        var actualDraftMessageSubject = mailRu.getSubjectOfLastDraftMessage();
-        var actualDraftMessageBody = mailRu.getBodyOfLastDraftMessage();
-        assertEquals(actualDraftMessageReceiver, receiver);
-        assertEquals(actualDraftMessageSubject, subject);
-        assertTrue(actualDraftMessageBody.contains(letterBody));
-
-        mailRu.clickOpenLastDraftMessage();
-        mailRu.waitUntilSendDraftButtonToBeClickable();
-        mailRu.clickSendDraftButton();
+        mailRu.clickOpenLastMessage();
+        mailRu.clickSendLetterButton();
         mailRu.clickCrossButton();
-        mailRu.waitUntilInvisibilityOfTestMessageSubject();
-        // assertFalse(lastDraftMessage.getText().contains(subject));
+        mailRu.waitUntilLastLetterIsClickable();
+        // Не срабатывает assertFalse (пишет Actual: True)
+        // mailRu.waitUntilVisibilityOfLastMessageSubject();
+        // var lastSentMessageSubject = mailRu.getSubjectOfLastSentMessage();
+        // assertFalse(lastSentMessageSubject.contentEquals(subject1));
+        // assertNotEquals(lastSentMessageSubject, subject);
 
         mailRu.clickOpenSentPage();
         mailRu.waitUntilURLContainsSent();
-        mailRu.waitUntilVisibilityOfTestMessageSubject();
-        // assertTrue(lastSentMessage.getText().contains(subject));
-        mailRu.clickOpenLastSentMessage();
-        mailRu.waitUntilVisibilityOfTestMessageBody();
-        // assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).isDisplayed());
-        // assertTrue(driver.findElement(By.xpath("//span[text()='elena.volnova@mail.ru']")).isDisplayed());
-        // assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Body']")).isDisplayed());
+        mailRu.waitUntilLastLetterIsClickable();
+        var lastSentMessageReceiver = mailRu.getReceiverOfLastMessage();
+        var lastSentMessageSubject = mailRu.getSubjectOfLastMessage();
+        var lastSentMessageBody = mailRu.getBodyOfLastMessage();
+        assertTrue(lastSentMessageReceiver.contains(receiver));
+        assertTrue(lastSentMessageSubject.contains(subject));
+        assertTrue(lastSentMessageBody.contains(letterBody));
 
         mailRu.clickPhDropdown();
         mailRu.clickLogoutButton();
