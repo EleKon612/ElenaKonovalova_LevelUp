@@ -16,9 +16,7 @@ public abstract class Homework4RefactorBasePage {
     protected final String trashURL = "https://e.mail.ru/trash/";
     protected final String testFolderURL = "https://e.mail.ru/1/";
     protected final String subject1 = "New TestLetter Subject";
-
     protected final String subject2 = "Тест";
-
     protected final String subject3 = "This is a perfect letter";
 
     protected WebDriver driver;

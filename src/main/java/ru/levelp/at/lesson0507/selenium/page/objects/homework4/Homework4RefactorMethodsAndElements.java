@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePage {
+public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePage {
 
     @FindBy(xpath = "//*[contains(@class, 'resplash-btn')]")
     private WebElement loginButton;
@@ -57,6 +57,8 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
     private WebElement deleteButton;
     @FindBy(xpath = "//*[contains(@class, 'button2_arrow-back')]")
     private WebElement returnButton;
+    @FindBy(xpath = "//*[contains(@class, 'button2_status_read')]")
+    private WebElement markAllUnreadButton;
     @FindBy(xpath = "//a[@href='/sent/']")
     private WebElement sentPage;
     @FindBy(xpath = "//a[@href='/1/']")
@@ -70,7 +72,7 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
     @FindBy(xpath = "//div[contains(@class, 'ph-item__hover-active')]")
     private WebElement logoutButton;
 
-    public Homework4RefactorMethodAndElements(WebDriver driver) {
+    public Homework4RefactorMethodsAndElements(WebDriver driver) {
         super(driver);
     }
 
@@ -104,6 +106,10 @@ public class Homework4RefactorMethodAndElements extends Homework4RefactorBasePag
 
     public void waitUntilVisibilityOfNewLetterButton() {
         waitUntilVisibilityOfElement(newLetterButton);
+    }
+
+    public void waitUntilVisibilityOfMarkUnreadButton() {
+        waitUntilVisibilityOfElement(markAllUnreadButton);
     }
 
     public void waitUntilVisibilityOfTestMessageSubjectExercise2() {
