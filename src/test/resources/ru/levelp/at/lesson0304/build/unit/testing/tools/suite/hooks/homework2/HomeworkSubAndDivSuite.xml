@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework Sub And Div Suite">
+
+    <test name="Homework Sub And Div Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.SubtractTest">
+          </class>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.DivideTest">
+          </class>
+      </classes>
+    </test>
+
+</suite>

@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework Sum and Mult Suite">
+
+    <test name="Homework Sum and Mult Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.SumTest">
+          </class>
+          <class name="ru.levelp.at.lesson0304.build.unit.testing.tools.homework2.MultiplyTest">
+          </class>
+      </classes>
+    </test>
+
+</suite>

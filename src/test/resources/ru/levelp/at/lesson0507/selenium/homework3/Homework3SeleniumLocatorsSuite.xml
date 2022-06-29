@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework3 Selenium Locators Suite.xml">
+
+    <test name="Homework3 Selenium Locators Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0507.selenium.basic.homework3.Exercise1MailruTest">
+          </class>
+          <class name="ru.levelp.at.lesson0507.selenium.basic.homework3.Exercise2MailruTest">
+          </class>
+          <class name="ru.levelp.at.lesson0507.selenium.basic.homework3.Exercise3MailruTest">
+          </class>
+      </classes>
+    </test>
+
+</suite>
