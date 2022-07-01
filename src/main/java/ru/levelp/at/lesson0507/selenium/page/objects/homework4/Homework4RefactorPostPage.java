@@ -1,24 +1,23 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.homework4;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePage {
+import java.util.List;
 
-    @FindBy(xpath = "//*[contains(@class, 'resplash-btn')]")
-    private WebElement loginButton;
-    @FindBy(xpath = "//div/iframe[@class='ag-popup__frame__layout__iframe']")
-    private WebElement loginFrame;
-    @FindBy(css = "[name='username']")
-    private WebElement usernameField;
-    @FindBy(xpath = "//*[text()='Enter password']")
-    private WebElement enterPasswordButton;
-    @FindBy(css = "[name='password']")
-    private WebElement passwordField;
-    @FindBy(xpath = "//*[text()='Sign in']")
-    private WebElement signInButton;
+public class Homework4RefactorPostPage extends Homework4RefactorBasePage {
+
+    protected WebDriver driver;
+    public Homework4RefactorPostPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+    }
+
     @FindBy(xpath = "//a[contains(@class, 'compose-button')]")
     private WebElement newLetterButton;
     @FindBy(xpath = "//*[@class='container--zU301']")
@@ -43,7 +42,7 @@ public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePa
     private WebElement lastMessageSubject;
     @FindBy(xpath = "//*[text()='" + subject1 + "']")
     private WebElement testMessageSubjectExercise1;
-    @FindBy(xpath = "//*[text()='" + subject2 + "']")
+    @FindBy(xpath = "//*[text()='Self: " + subject2 + "']")
     private WebElement testMessageSubjectExercise2;
     @FindBy(xpath = "//*[text()='" + subject3 + "']")
     private WebElement testMessageSubjectExercise3;
@@ -63,8 +62,6 @@ public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePa
     private WebElement sentPage;
     @FindBy(xpath = "//a[@href='/1/']")
     private WebElement testPage;
-    @FindBy(xpath = "//a[@href='/inbox/']")
-    private WebElement inboxPage;
     @FindBy(xpath = "//a[@href='/trash/']")
     private WebElement trashBinPage;
     @FindBy(xpath = "//span[contains(@class, 'ph-dropdown-icon')]")
@@ -72,25 +69,20 @@ public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePa
     @FindBy(xpath = "//div[contains(@class, 'ph-item__hover-active')]")
     private WebElement logoutButton;
 
-    public Homework4RefactorMethodsAndElements(WebDriver driver) {
-        super(driver);
-    }
+    /*List<WebElement> list1 =  (List<WebElement>) driver.findElements(By.xpath("//a[@href='//']"));
+    WebElement e = list1.get(1);
 
-    public void openMailRu() {
-        openURL(mailRuURL);
-    }
+    public void openFolder() {
+        clickButton(e);
+    }*/
 
-    public void switchToLoginFrame() {
-        switchToFrame(loginFrame);
-    }
+    /*List<WebElement> folders = driver.findElements(By.xpath("//div[@class='nav__folder-name__txt']"));
 
-    public void insertUsername(final String username) {
-        insertInputField(usernameField, username);
-    }
-
-    public void insertPassword(final String password) {
-        insertInputField(passwordField, password);
-    }
+    public void clickFolder(final String folderURL) {
+        for (var i = 0; i <= folders.toArray().length; i++) {
+            WebElement i = folders(i);
+        }
+    }*/
 
     public void insertReceiver(final CharSequence receiver) {
         insertInputField(receiverField, receiver);
@@ -128,32 +120,8 @@ public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePa
         waitUntilElementToBeClickable(lastMessageSubject);
     }
 
-    public void waitUntilURLContainsSent() {
-        waitUntilUrlContains(sentURL);
-    }
-
-    public void waitUntilURLContainsDrafts() {
-        waitUntilUrlContains(draftsURL);
-    }
-
-    public void waitUntilURLContainsTrash() {
-        waitUntilUrlContains(trashURL);
-    }
-
-    public void waitUntilURLContainsTestFolderIndex() {
-        waitUntilUrlContains(testFolderURL);
-    }
-
-    public void clickLoginButton() {
-        clickButton(loginButton);
-    }
-
-    public void clickEnterPasswordButton() {
-        clickButton(enterPasswordButton);
-    }
-
-    public void clickSignInButton() {
-        clickButton(signInButton);
+    public void waitUntilURLContains(final String pageURL) {
+        waitUntilUrlContains(pageURL);
     }
 
     public void clickNewLetterButton() {
@@ -166,10 +134,6 @@ public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePa
 
     public void clickCloseDraftButton() {
         clickButton(closeDraftButton);
-    }
-
-    public void clickOpenDraftsPage() {
-        clickButton(draftsPage);
     }
 
     public void clickOpenLastMessage() {
@@ -192,6 +156,10 @@ public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePa
         clickButton(returnButton);
     }
 
+    public void clickOpenDraftsPage() {
+        clickButton(draftsPage);
+    }
+
     public void clickOpenSentPage() {
         clickButton(sentPage);
     }
@@ -200,12 +168,12 @@ public class Homework4RefactorMethodsAndElements extends Homework4RefactorBasePa
         clickButton(testPage);
     }
 
-    public void clickSelfMessagesInInboxPage() {
-        clickButton(selfMessagesInInbox);
-    }
-
     public void clickOpenTrashBinPage() {
         clickButton(trashBinPage);
+    }
+
+    public void clickSelfMessagesInInboxPage() {
+        clickButton(selfMessagesInInbox);
     }
 
     public void clickPhDropdown() {
