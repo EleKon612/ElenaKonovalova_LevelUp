@@ -9,14 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Homework4RefactorBasePage {
-
-    protected String mailRuURL = "https://mail.ru";
-    protected final String draftsURL = "https://e.mail.ru/drafts/";
-    protected final String sentURL = "https://e.mail.ru/sent/";
-    protected final String trashURL = "https://e.mail.ru/trash/";
-    protected final String testFolderURL = "https://e.mail.ru/1/";
     protected final String subject1 = "New TestLetter Subject";
-    protected final String subject2 = "Тест";
+    protected final String subject2 = "Test";
     protected final String subject3 = "This is a perfect letter";
 
     protected WebDriver driver;
@@ -40,7 +34,7 @@ public abstract class Homework4RefactorBasePage {
         return driver.getCurrentUrl();
     }
 
-    protected void openURL(final String url) {
+    public void openURL(final String url) {
         driver.navigate().to(url);
     }
 
@@ -51,6 +45,10 @@ public abstract class Homework4RefactorBasePage {
     protected void clickButton(final WebElement buttonClicked) {
         wait.until(ExpectedConditions.elementToBeClickable(buttonClicked)).click();
     }
+
+    /*protected void openFolder(final WebElement folder) {
+        wait.until(ExpectedConditions.elementToBeClickable(folder)).click();
+    }*/
 
     protected void switchToFrame(final WebElement frame) {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));

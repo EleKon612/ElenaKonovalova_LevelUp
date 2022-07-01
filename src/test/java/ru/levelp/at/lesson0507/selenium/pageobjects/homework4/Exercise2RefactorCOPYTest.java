@@ -1,11 +1,10 @@
 package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
+import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertTrue;
 
-import org.testng.annotations.Test;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMainPage;
-
-public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
+public class Exercise2RefactorCOPYTest extends Homework4RefactorBaseTest {
 
     @Test
     public void exercise2Test() {
@@ -38,5 +37,8 @@ public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
         assertTrue(lastReceivedMessageReceiver.contains(receiverInbox2));
         assertTrue(lastReceivedMessageSubject.contains(subject2));
         assertTrue(lastReceivedMessageBody.contains(letterBody2));
+
+        postPage.clickPhDropdown();
+        postPage.clickLogoutButton();
     }
 }

@@ -3,64 +3,40 @@ package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMethodsAndElements;
 
 public class Exercise3RefactorTest extends Homework4RefactorBaseTest {
 
     @Test
     public void exercise3Test() {
-        final String receiver = "elekon612@mail.ru";
-        final String receiverInbox = "Elena Konovalova";
-        final String subject = "This is a perfect letter";
-        final String letterBody = "London is the capital of Great Britain";
+        postPage.waitUntilVisibilityOfNewLetterButton();
+        assertTrue(postPage.getCurrentURL().contains(inboxURL));
 
-        Homework4RefactorMethodsAndElements mailRuMain = new Homework4RefactorMethodsAndElements(driver);
-        mailRuMain.openMailRu();
-        mailRuMain.clickLoginButton();
-        mailRuMain.switchToLoginFrame();
+        postPage.clickNewLetterButton();
+        postPage.switchToActiveElement();
+        postPage.insertReceiver(receiver3);
+        postPage.insertSubject(subject3);
+        postPage.insertBody(letterBody3);
+        postPage.clickSendLetterButton();
+        postPage.clickCrossButton();
 
-        Homework4RefactorMethodsAndElements signInFrame = new Homework4RefactorMethodsAndElements(driver);
-        signInFrame.insertUsername(username);
-        signInFrame.clickEnterPasswordButton();
-        signInFrame.insertPassword(password);
-        signInFrame.clickSignInButton();
+        postPage.clickSelfMessagesInInboxPage();
+        postPage.waitUntilVisibilityOfMarkUnreadButton();
+        postPage.waitUntilVisibilityOfTestMessageSubjectExercise3();
+        var lastInboxMessageReceiver = postPage.getReceiverOfLastMessage();
+        var lastInboxMessageSubject = postPage.getSubjectOfLastMessage();
+        var lastInboxMessageBody = postPage.getBodyOfLastMessage();
+        assertTrue(lastInboxMessageReceiver.contains(receiverInbox3));
+        assertTrue(lastInboxMessageSubject.contains(subject3));
+        assertTrue(lastInboxMessageBody.contains(letterBody3));
+        postPage.clickOpenLastMessage();
 
-        Homework4RefactorMethodsAndElements mailFolder = new Homework4RefactorMethodsAndElements(driver);
-        mailFolder.waitUntilVisibilityOfNewLetterButton();
-        assertTrue(mailFolder.getCurrentURL().contains(inboxURL));
+        postPage.clickDeleteButton();
+        postPage.clickReturnButton();
 
-        mailFolder.clickNewLetterButton();
-        mailFolder.switchToActiveElement();
-
-        Homework4RefactorMethodsAndElements letterFrame = new Homework4RefactorMethodsAndElements(driver);
-        letterFrame.insertReceiver(receiver);
-        letterFrame.insertSubject(subject);
-        letterFrame.insertBody(letterBody);
-        letterFrame.clickSendLetterButton();
-        letterFrame.clickCrossButton();
-
-        mailFolder.clickSelfMessagesInInboxPage();
-        mailFolder.waitUntilVisibilityOfMarkUnreadButton();
-        mailFolder.waitUntilVisibilityOfTestMessageSubjectExercise3();
-        var lastInboxMessageReceiver = mailFolder.getReceiverOfLastMessage();
-        var lastInboxMessageSubject = mailFolder.getSubjectOfLastMessage();
-        var lastInboxMessageBody = mailFolder.getBodyOfLastMessage();
-        assertTrue(lastInboxMessageReceiver.contains(receiverInbox));
-        assertTrue(lastInboxMessageSubject.contains(subject));
-        assertTrue(lastInboxMessageBody.contains(letterBody));
-        mailFolder.clickOpenLastMessage();
-
-        Homework4RefactorMethodsAndElements letterPage = new Homework4RefactorMethodsAndElements(driver);
-        letterPage.clickDeleteButton();
-        letterPage.clickReturnButton();
-
-        mailFolder.clickOpenTrashBinPage();
-        mailFolder.waitUntilURLContainsTrash();
-        mailFolder.waitUntilLastLetterIsClickable();
-        var lastTrashMessageSubject = mailFolder.getSubjectOfLastMessage();
-        assertTrue(lastTrashMessageSubject.contains(subject));
-
-        mailFolder.clickPhDropdown();
-        mailFolder.clickLogoutButton();
+        postPage.clickOpenTrashBinPage();
+        postPage.waitUntilURLContains(trashURL);
+        postPage.waitUntilLastLetterIsClickable();
+        var lastTrashMessageSubject = postPage.getSubjectOfLastMessage();
+        assertTrue(lastTrashMessageSubject.contains(subject3));
     }
 }

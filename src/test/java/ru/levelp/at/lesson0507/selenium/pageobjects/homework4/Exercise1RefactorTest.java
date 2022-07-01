@@ -4,66 +4,47 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMethodsAndElements;
+import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMainPage;
+import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorPostPage;
 
 public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
 
     @Test
     public void exercise1Test() {
-        final String receiver = "elekon612@yahoo.com";
-        final String subject = "New TestLetter Subject";
-        final String letterBody = "New TestLetter Body";
+        postPage.waitUntilVisibilityOfNewLetterButton();
+        assertTrue(postPage.getCurrentURL().contains(inboxURL));
+        postPage.clickNewLetterButton();
+        postPage.switchToActiveElement();
+        postPage.insertReceiver(receiver1);
+        postPage.insertSubject(subject1);
+        postPage.insertBody(letterBody1);
+        postPage.clickSaveDraftButton();
+        postPage.clickCloseDraftButton();
 
-        Homework4RefactorMethodsAndElements mailRuMain = new Homework4RefactorMethodsAndElements(driver);
-        mailRuMain.openMailRu();
-        mailRuMain.clickLoginButton();
-        mailRuMain.switchToLoginFrame();
+        postPage.clickOpenDraftsPage();
+        postPage.waitUntilURLContains(draftsURL);
+        var lastMessageReceiver = postPage.getReceiverOfLastMessage();
+        var lastMessageSubject = postPage.getSubjectOfLastMessage();
+        var lastMessageBody = postPage.getBodyOfLastMessage();
+        assertTrue(lastMessageReceiver.contains(receiver1));
+        assertTrue(lastMessageSubject.contains(subject1));
+        assertTrue(lastMessageBody.contains(letterBody1));
+        postPage.clickOpenLastMessage();
 
-        Homework4RefactorMethodsAndElements signInFrame = new Homework4RefactorMethodsAndElements(driver);
-        signInFrame.insertUsername(username);
-        signInFrame.clickEnterPasswordButton();
-        signInFrame.insertPassword(password);
-        signInFrame.clickSignInButton();
+        postPage.clickSendLetterButton();
+        postPage.clickCrossButton();
 
-        Homework4RefactorMethodsAndElements mailFolder = new Homework4RefactorMethodsAndElements(driver);
-        mailFolder.waitUntilVisibilityOfNewLetterButton();
-        assertTrue(mailFolder.getCurrentURL().contains(inboxURL));
-        mailFolder.clickNewLetterButton();
-        mailFolder.switchToActiveElement();
-
-        Homework4RefactorMethodsAndElements letterFrame = new Homework4RefactorMethodsAndElements(driver);
-        letterFrame.insertReceiver(receiver);
-        letterFrame.insertSubject(subject);
-        letterFrame.insertBody(letterBody);
-        letterFrame.clickSaveDraftButton();
-        letterFrame.clickCloseDraftButton();
-
-        mailFolder.clickOpenDraftsPage();
-        mailFolder.waitUntilURLContainsDrafts();
-        var lastMessageReceiver = mailFolder.getReceiverOfLastMessage();
-        var lastMessageSubject = mailFolder.getSubjectOfLastMessage();
-        var lastMessageBody = mailFolder.getBodyOfLastMessage();
-        assertTrue(lastMessageReceiver.contains(receiver));
-        assertTrue(lastMessageSubject.contains(subject));
-        assertTrue(lastMessageBody.contains(letterBody));
-        mailFolder.clickOpenLastMessage();
-
-        letterFrame.clickSendLetterButton();
-        letterFrame.clickCrossButton();
-
-        mailFolder.waitUntilInvisibilityOfTestMessage1();
-        var lastSentNonTestMessageSubject = mailFolder.getSubjectOfLastMessage();
-        assertFalse(lastSentNonTestMessageSubject.contentEquals(subject));
-        mailFolder.clickOpenSentPage();
-        mailFolder.waitUntilURLContainsSent();
-        mailFolder.waitUntilLastLetterIsClickable();
-        var lastSentMessageReceiver = mailFolder.getReceiverOfLastMessage();
-        var lastSentMessageSubject = mailFolder.getSubjectOfLastMessage();
-        var lastSentMessageBody = mailFolder.getBodyOfLastMessage();
-        assertTrue(lastSentMessageReceiver.contains(receiver));
-        assertTrue(lastSentMessageSubject.contains(subject));
-        assertTrue(lastSentMessageBody.contains(letterBody));
-        mailFolder.clickPhDropdown();
-        mailFolder.clickLogoutButton();
+        postPage.waitUntilInvisibilityOfTestMessage1();
+        var lastSentNonTestMessageSubject = postPage.getSubjectOfLastMessage();
+        assertFalse(lastSentNonTestMessageSubject.contentEquals(subject1));
+        postPage.clickOpenSentPage();
+        postPage.waitUntilURLContains(sentURL);
+        postPage.waitUntilLastLetterIsClickable();
+        var lastSentMessageReceiver = postPage.getReceiverOfLastMessage();
+        var lastSentMessageSubject = postPage.getSubjectOfLastMessage();
+        var lastSentMessageBody = postPage.getBodyOfLastMessage();
+        assertTrue(lastSentMessageReceiver.contains(receiver1));
+        assertTrue(lastSentMessageSubject.contains(subject1));
+        assertTrue(lastSentMessageBody.contains(letterBody1));
     }
 }
