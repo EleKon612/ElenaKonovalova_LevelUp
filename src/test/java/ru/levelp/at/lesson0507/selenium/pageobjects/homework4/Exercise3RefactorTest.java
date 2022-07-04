@@ -21,7 +21,6 @@ public class Exercise3RefactorTest extends Homework4RefactorBaseTest {
 
         postPage.clickSelfMessagesInInboxPage();
         postPage.waitUntilVisibilityOfMarkUnreadButton();
-        postPage.waitUntilVisibilityOfTestMessage3();
         var lastInboxMessageReceiver = postPage.getReceiverOfLastMessage();
         var lastInboxMessageSubject = postPage.getSubjectOfLastMessage();
         var lastInboxMessageBody = postPage.getBodyOfLastMessage();

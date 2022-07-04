@@ -1,5 +1,6 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.homework4;
 
+import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class Homework4RefactorPostPage extends Homework4RefactorBasePage {
 
     protected WebDriver driver;
+
     public Homework4RefactorPostPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -37,12 +39,8 @@ public class Homework4RefactorPostPage extends Homework4RefactorBasePage {
     private WebElement lastMessageReceiver;
     @FindBy(xpath = "//span[@class='ll-sj__normal']")
     private WebElement lastMessageSubject;
-    @FindBy(xpath = "//*[text()='" + subject1 + "']")
-    private WebElement testMessageSubjectExercise1;
-    @FindBy(xpath = "//*[text()='Self: " + subject2 + "']")
-    private WebElement testMessageSubjectExercise2;
-    @FindBy(xpath = "//*[text()='" + subject3 + "']")
-    private WebElement testMessageSubjectExercise3;
+    @FindBy(xpath = "//div[contains(@class, 'llc__content')]")
+    private List<WebElement> lastMessageSubjectList;
     @FindBy(xpath = "//span[@class='llc__snippet']")
     private WebElement lastMessageBody;
     @FindBy(xpath = "//button[@data-test-id='send']")
@@ -66,21 +64,6 @@ public class Homework4RefactorPostPage extends Homework4RefactorBasePage {
     @FindBy(xpath = "//div[contains(@class, 'ph-item__hover-active')]")
     private WebElement logoutButton;
 
-    /*List<WebElement> list1 =  (List<WebElement>) driver.findElements(By.xpath("//a[@href='//']"));
-    WebElement e = list1.get(1);
-
-    public void openFolder() {
-        clickButton(e);
-    }*/
-
-    /*List<WebElement> folders = driver.findElements(By.xpath("//div[@class='nav__folder-name__txt']"));
-
-    public void clickFolder(final String folderURL) {
-        for (var i = 0; i <= folders.toArray().length; i++) {
-            WebElement i = folders(i);
-        }
-    }*/
-
     public void insertReceiver(final CharSequence receiver) {
         insertInputField(receiverField, receiver);
     }
@@ -101,16 +84,13 @@ public class Homework4RefactorPostPage extends Homework4RefactorBasePage {
         waitUntilVisibilityOfElement(markAllUnreadButton);
     }
 
-    public void waitUntilInvisibilityOfTestMessage1() {
-        waitUntilInvisibilityOfElement(testMessageSubjectExercise1);
+    public void waitUntilTheListOfMessagesIsEmpty() {
+        wait.until(ExpectedConditions.invisibilityOfAllElements((lastMessageSubjectList)));
     }
 
-    public void waitUntilVisibilityOfTestMessage2() {
-        waitUntilVisibilityOfElement(testMessageSubjectExercise2);
-    }
-
-    public void waitUntilVisibilityOfTestMessage3() {
-        waitUntilVisibilityOfElement(testMessageSubjectExercise3);
+    public boolean confirmThatListOfMessagesIsEmpty() {
+        invisibilityOfElements(lastMessageSubjectList);
+        return true;
     }
 
     public void waitUntilLastLetterIsClickable() {

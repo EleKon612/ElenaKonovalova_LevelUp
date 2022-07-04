@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorBasePage;
 import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMainPage;
 import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorPostPage;
 
@@ -50,12 +49,10 @@ public abstract class Homework4RefactorBaseTest {
         mainPage = new Homework4RefactorMainPage(driver);
         postPage = new Homework4RefactorPostPage(driver);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
 
         mainPage.openURL(mailRuURL);
-        mainPage.clickLoginButton();
-        mainPage.switchToLoginFrame();
         mainPage.insertUsername(username);
         mainPage.clickEnterPasswordButton();
         mainPage.insertPassword(password);

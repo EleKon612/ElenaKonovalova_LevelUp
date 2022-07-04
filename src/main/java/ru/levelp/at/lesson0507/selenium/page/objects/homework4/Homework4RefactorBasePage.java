@@ -1,17 +1,18 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.homework4;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class Homework4RefactorBasePage {
-    protected final String subject1 = "New TestLetter Subject";
-    protected final String subject2 = "Test";
-    protected final String subject3 = "This is a perfect letter";
 
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -46,10 +47,6 @@ public abstract class Homework4RefactorBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(buttonClicked)).click();
     }
 
-    /*protected void openFolder(final WebElement folder) {
-        wait.until(ExpectedConditions.elementToBeClickable(folder)).click();
-    }*/
-
     protected void switchToFrame(final WebElement frame) {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));
     }
@@ -58,15 +55,23 @@ public abstract class Homework4RefactorBasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    protected void waitUntilInvisibilityOfElement(final WebElement webElement) {
-        wait.until(ExpectedConditions.invisibilityOf(webElement));
-    }
-
     protected void waitUntilElementToBeClickable(final WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     protected void waitUntilUrlContains(final String text) {
         wait.until(ExpectedConditions.urlContains(text));
+    }
+
+    public static ExpectedCondition<Boolean> invisibilityOfElements(final List<WebElement> listElement) {
+        return new ExpectedCondition<>() {
+            public Boolean apply(WebDriver webDriver) {
+                try {
+                    return listElement.isEmpty();
+                } catch (NoSuchElementException | StaleElementReferenceException e) {
+                    return true;
+                }
+            }
+        };
     }
 }
