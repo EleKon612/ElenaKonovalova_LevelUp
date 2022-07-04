@@ -3,7 +3,6 @@ package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMainPage;
 
 public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
 
@@ -21,7 +20,7 @@ public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
 
         postPage.clickOpenSentPage();
         postPage.waitUntilURLContains(sentURL);
-        postPage.waitUntilVisibilityOfTestMessageSubjectExercise2();
+        postPage.waitUntilVisibilityOfTestMessage2();
         var lastSentMessageReceiver = postPage.getReceiverOfLastMessage();
         var lastSentMessageSubject = postPage.getSubjectOfLastMessage();
         var lastSentMessageBody = postPage.getBodyOfLastMessage();
@@ -31,7 +30,7 @@ public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
 
         postPage.clickOpenTestFolderPage();
         postPage.waitUntilURLContains(testFolderURL);
-        postPage.waitUntilVisibilityOfTestMessageSubjectExercise2();
+        postPage.waitUntilVisibilityOfTestMessage2();
         var lastReceivedMessageReceiver = postPage.getReceiverOfLastMessage();
         var lastReceivedMessageSubject = postPage.getSubjectOfLastMessage();
         var lastReceivedMessageBody = postPage.getBodyOfLastMessage();
