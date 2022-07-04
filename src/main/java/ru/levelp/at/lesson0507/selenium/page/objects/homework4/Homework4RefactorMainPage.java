@@ -15,10 +15,6 @@ public class Homework4RefactorMainPage extends Homework4RefactorBasePage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//*[contains(@class, 'resplash-btn')]")
-    private WebElement loginButton;
-    @FindBy(xpath = "//div/iframe[@class='ag-popup__frame__layout__iframe']")
-    private WebElement loginFrame;
     @FindBy(css = "[name='username']")
     private WebElement usernameField;
     @FindBy(xpath = "//button[@data-test-id='next-button']")

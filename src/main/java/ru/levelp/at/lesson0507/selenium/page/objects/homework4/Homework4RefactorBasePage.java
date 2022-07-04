@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class Homework4RefactorBasePage {
 
     protected WebDriver driver;
+
     protected WebDriverWait wait;
 
     protected Homework4RefactorBasePage(WebDriver driver) {
@@ -45,10 +46,6 @@ public abstract class Homework4RefactorBasePage {
 
     protected void clickButton(final WebElement buttonClicked) {
         wait.until(ExpectedConditions.elementToBeClickable(buttonClicked)).click();
-    }
-
-    protected void switchToFrame(final WebElement frame) {
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));
     }
 
     protected void waitUntilVisibilityOfElement(final WebElement webElement) {
