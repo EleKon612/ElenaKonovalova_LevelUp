@@ -1,13 +1,10 @@
 package ru.levelp.at.lesson0507.selenium.page.objects.homework4;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.List;
 
 public class Homework4RefactorPostPage extends Homework4RefactorBasePage {
 
@@ -104,16 +101,16 @@ public class Homework4RefactorPostPage extends Homework4RefactorBasePage {
         waitUntilVisibilityOfElement(markAllUnreadButton);
     }
 
-    public void waitUntilVisibilityOfTestMessageSubjectExercise2() {
+    public void waitUntilInvisibilityOfTestMessage1() {
+        waitUntilInvisibilityOfElement(testMessageSubjectExercise1);
+    }
+
+    public void waitUntilVisibilityOfTestMessage2() {
         waitUntilVisibilityOfElement(testMessageSubjectExercise2);
     }
 
-    public void waitUntilVisibilityOfTestMessageSubjectExercise3() {
+    public void waitUntilVisibilityOfTestMessage3() {
         waitUntilVisibilityOfElement(testMessageSubjectExercise3);
-    }
-
-    public void waitUntilInvisibilityOfTestMessage1() {
-        waitUntilInvisibilityOfElement(testMessageSubjectExercise1);
     }
 
     public void waitUntilLastLetterIsClickable() {
