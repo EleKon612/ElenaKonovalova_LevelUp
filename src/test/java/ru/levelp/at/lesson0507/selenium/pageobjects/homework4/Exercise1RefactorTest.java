@@ -1,11 +1,8 @@
 package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
 
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorMainPage;
-import ru.levelp.at.lesson0507.selenium.page.objects.homework4.Homework4RefactorPostPage;
 
 public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
 
@@ -34,9 +31,8 @@ public class Exercise1RefactorTest extends Homework4RefactorBaseTest {
         postPage.clickSendLetterButton();
         postPage.clickCrossButton();
 
-        postPage.waitUntilInvisibilityOfTestMessage1();
-        var lastSentNonTestMessageSubject = postPage.getSubjectOfLastMessage();
-        assertFalse(lastSentNonTestMessageSubject.contentEquals(subject1));
+        postPage.waitUntilTheListOfMessagesIsEmpty();
+        postPage.confirmThatListOfMessagesIsEmpty();
         postPage.clickOpenSentPage();
         postPage.waitUntilURLContains(sentURL);
         postPage.waitUntilLastLetterIsClickable();

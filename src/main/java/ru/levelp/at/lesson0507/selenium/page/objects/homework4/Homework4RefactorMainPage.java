@@ -4,11 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Homework4RefactorMainPage extends Homework4RefactorBasePage {
 
     protected WebDriver driver;
+
     public Homework4RefactorMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -21,16 +21,12 @@ public class Homework4RefactorMainPage extends Homework4RefactorBasePage {
     private WebElement loginFrame;
     @FindBy(css = "[name='username']")
     private WebElement usernameField;
-    @FindBy(xpath = "//*[text()='Enter password']")
+    @FindBy(xpath = "//button[@data-test-id='next-button']")
     private WebElement enterPasswordButton;
     @FindBy(css = "[name='password']")
     private WebElement passwordField;
-    @FindBy(xpath = "//*[text()='Sign in']")
+    @FindBy(xpath = "//button[@data-test-id='submit-button']")
     private WebElement signInButton;
-
-    public void switchToLoginFrame() {
-        switchToFrame(loginFrame);
-    }
 
     public void insertUsername(final String username) {
         insertInputField(usernameField, username);
@@ -38,10 +34,6 @@ public class Homework4RefactorMainPage extends Homework4RefactorBasePage {
 
     public void insertPassword(final String password) {
         insertInputField(passwordField, password);
-    }
-
-    public void clickLoginButton() {
-        clickButton(loginButton);
     }
 
     public void clickEnterPasswordButton() {
