@@ -20,20 +20,14 @@ public class Exercise2RefactorTest extends Homework4RefactorBaseTest {
 
         postPage.clickOpenSentPage();
         postPage.waitUntilURLContains(sentURL);
-        var lastSentMessageReceiver = postPage.getReceiverOfLastMessage();
-        var lastSentMessageSubject = postPage.getSubjectOfLastMessage();
-        var lastSentMessageBody = postPage.getBodyOfLastMessage();
-        assertTrue(lastSentMessageReceiver.contains(receiver2));
-        assertTrue(lastSentMessageSubject.contains(subject2));
-        assertTrue(lastSentMessageBody.contains(letterBody2));
+        assertTrue(postPage.getReceiverOfLastMessage().contains(receiver2));
+        assertTrue(postPage.getSubjectOfLastMessage().contains(subject2));
+        assertTrue(postPage.getBodyOfLastMessage().contains(letterBody2));
 
         postPage.clickOpenTestFolderPage();
         postPage.waitUntilURLContains(testFolderURL);
-        var lastReceivedMessageReceiver = postPage.getReceiverOfLastMessage();
-        var lastReceivedMessageSubject = postPage.getSubjectOfLastMessage();
-        var lastReceivedMessageBody = postPage.getBodyOfLastMessage();
-        assertTrue(lastReceivedMessageReceiver.contains(receiverInbox2));
-        assertTrue(lastReceivedMessageSubject.contains(subject2));
-        assertTrue(lastReceivedMessageBody.contains(letterBody2));
+        assertTrue(postPage.getReceiverOfLastMessage().contains(receiverInbox2));
+        assertTrue(postPage.getSubjectOfLastMessage().contains(subject2));
+        assertTrue(postPage.getBodyOfLastMessage().contains(letterBody2));
     }
 }

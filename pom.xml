@@ -37,7 +37,7 @@
         <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
         <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
         <homework2.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework2</homework2.suites.base.dir>
-        <homework3.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium</homework3.suites.base.dir>
+        <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium/homework</homework.suites.base.dir>
     </properties>
 
     <profiles>
@@ -58,17 +58,24 @@
         <profile>
             <id>homework3-selenium</id>
             <properties>
-                <test.suite.name>homework3/Homework3SeleniumLocatorsSuite.xml</test.suite.name>
+                <test.suite.name>Homework3SeleniumLocatorsSuite.xml</test.suite.name>
             </properties>
         </profile>
 
         <profile>
             <id>homework4-selenium</id>
+            <properties>
+                <test.suite.name>Homework4SeleniumRefactorSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework5-selenium</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>homework4/Homework4SeleniumRefactorSuite.xml</test.suite.name>
+                <test.suite.name>Homework5SeleniumRefactorSuite.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -205,7 +212,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${homework3.suites.base.dir}/${test.suite.name}</suiteXmlFile>
+                        <suiteXmlFile>${homework.suites.base.dir}/${test.suite.name}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
