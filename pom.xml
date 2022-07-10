@@ -24,7 +24,9 @@
         <webdrivermanager.version>5.2.0</webdrivermanager.version>
         <javafaker.version>1.0.2</javafaker.version>
         <snakeyaml.version>1.30</snakeyaml.version>
-        <rest.assured.version>5.1.1</rest.assured.version>
+        <jackson-databind.version>2.13.3</jackson-databind.version>
+        <bcpkix-jdk15on.version>1.70</bcpkix-jdk15on.version>
+        <lombok.version>1.18.24</lombok.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -102,13 +104,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest.assured.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>ru.levelp.at</groupId>
             <artifactId>ElenaKonovalova_LevelUp_project_calculator</artifactId>
             <version>1.0</version>
@@ -149,6 +144,25 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>${snakeyaml.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>${bcpkix-jdk15on.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
