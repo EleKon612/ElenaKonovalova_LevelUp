@@ -40,6 +40,7 @@
         <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
         <homework2.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework2</homework2.suites.base.dir>
         <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium/homework</homework.suites.base.dir>
+        <rest-assured.version>5.1.1</rest-assured.version>
     </properties>
 
     <profiles>
@@ -163,6 +164,12 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
         </dependency>
     </dependencies>
 
