@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.emptyOrNullString;
 
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 
@@ -16,17 +17,14 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import org.apache.commons.lang3.ObjectUtils;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class GoRestObjectTest {
+public class GoRestObjectUsersTest {
 
     private static final String BASE_URL = "https://gorest.co.in/public-api";
     private static final String USERS = BASE_URL + "/users";
-    private static final String POSTS = BASE_URL + "/posts";
-    private static final String COMMENTS = BASE_URL + "/comments";
 
     private RequestSpecification requestSpecification;
     private ResponseSpecification responseSpecification;
@@ -60,17 +58,31 @@ public class GoRestObjectTest {
                 .when()
                 .get(USERS)
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .body("code", Matchers.equalTo(200))
+                .body("meta.pagination.page", Matchers.equalTo(1))
+                .body("meta.pagination.limit", Matchers.equalTo(10))
+                .body("data.id", Matchers.not(emptyOrNullString()))
+                .body("data.name", Matchers.not(emptyOrNullString()))
+                .body("data.email", Matchers.not(emptyOrNullString()))
+                .body("data.gender", Matchers.not(emptyOrNullString()))
+                .body("data.status", Matchers.not(emptyOrNullString()));
     }
 
     @Test
     void createUserTest() {
         var faker = new Faker();
-        var personRequest = CreatePersonRequestData.builder()
-                .name(faker.name().fullName())
-                .gender(faker.demographic().sex().toLowerCase(Locale.ROOT))
-                .email(faker.internet().emailAddress())
-                .status("active")
+        var newName = faker.name().fullName();
+        var newGender = faker.demographic().sex().toLowerCase(Locale.ROOT);
+        var newEmail = faker.internet().emailAddress();
+        var random = new SecureRandom();
+        var statusList = Arrays.asList("active", "inactive");
+        var newRandomStatus = statusList.get(random.nextInt(statusList.size()));
+        var personRequest = CreateUsersRequestData.builder()
+                .name(newName)
+                .gender(newGender)
+                .email(newEmail)
+                .status(newRandomStatus)
                 .build();
 
         given()
@@ -79,12 +91,16 @@ public class GoRestObjectTest {
                 .post(USERS)
                 .then()
                 .statusCode(200)
-                .body("data.id", Matchers.not(emptyOrNullString()));
+                .body("data.id", Matchers.not(emptyOrNullString()))
+                .body("data.name", Matchers.equalTo(newName))
+                .body("data.email", Matchers.equalTo(newEmail))
+                .body("data.gender", Matchers.equalTo(newGender))
+                .body("data.status", Matchers.equalTo(newRandomStatus));
     }
 
     @Test
     void getRandomUserTest() {
-        var randomId = new Random().nextInt(5000);
+        var randomId = new Random().nextInt(3800);
 
         given()
                 .contentType(ContentType.JSON)
@@ -101,15 +117,19 @@ public class GoRestObjectTest {
 
     @Test
     void updateRandomUserTest() {
-        var randomId = new Random().nextInt(5000);
+        var randomId = new Random().nextInt(3800);
         var faker = new Faker();
         var updatedName = faker.name().fullName();
+        var updatedGender = faker.demographic().sex().toLowerCase(Locale.ROOT);
         var updatedEmail = faker.internet().emailAddress();
-        var personRequest = CreatePersonRequestData.builder()
+        var random = new SecureRandom();
+        var statusList = Arrays.asList("active", "inactive");
+        var updatedRandomStatus = statusList.get(random.nextInt(statusList.size()));
+        var personRequest = CreateUsersRequestData.builder()
                 .name(updatedName)
-                .gender(faker.demographic().sex().toLowerCase(Locale.ROOT))
+                .gender(updatedGender)
                 .email(updatedEmail)
-                .status("inactive")
+                .status(updatedRandomStatus)
                 .build();
 
         given()
@@ -120,12 +140,14 @@ public class GoRestObjectTest {
                 .statusCode(200)
                 .body("data.id", Matchers.equalTo(randomId))
                 .body("data.name", Matchers.equalTo(updatedName))
-                .body("data.email", Matchers.equalTo(updatedEmail));
+                .body("data.gender", Matchers.equalTo(updatedGender))
+                .body("data.email", Matchers.equalTo(updatedEmail))
+                .body("data.status", Matchers.equalTo(updatedRandomStatus));
     }
 
     @Test
     void deleteRandomUserTest() {
-        var randomId = new Random().nextInt(5000);
+        var randomId = new Random().nextInt(3800);
 
         given()
                 .when()
@@ -136,16 +158,4 @@ public class GoRestObjectTest {
                 .body("meta", Matchers.equalTo(null))
                 .body("data", Matchers.equalTo(null));
     }
-
-    @Test
-    void getAllPostsTest() {
-        given()
-                .contentType(ContentType.JSON)
-                .when()
-                .get(POSTS)
-                .then()
-                .statusCode(200);
-    }
-
-
 }
