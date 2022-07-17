@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework5 Selenium Locators Suite.xml">
+
+    <test name="Homework5 Selenium Locators Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0507.selenium.pageobjects.homework5.tests.Exercise1RefactorStepsTest">
+          </class>
+          <class name="ru.levelp.at.lesson0507.selenium.pageobjects.homework5.tests.Exercise2RefactorStepsTest">
+          </class>
+          <class name="ru.levelp.at.lesson0507.selenium.pageobjects.homework5.tests.Exercise3RefactorStepsTest">
+          </class>
+      </classes>
+    </test>
+
+</suite>

@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson0507.selenium.pageobjects.homework4;
+package ru.levelp.at.lesson0507.selenium.pageobjects.homework5.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
