@@ -3,11 +3,7 @@
 
     <test name="Homework6 Rest Api Suite">
       <classes>
-          <class name="ru.levelp.at.lesson0809.api.GoRestObjectUsersTest">
-          </class>
-          <class name="ru.levelp.at.lesson0809.api.GoRestObjectPostsTest">
-          </class>
-          <class name="ru.levelp.at.lesson0809.api.GoRestObjectCommentsTest">
+          <class name="ru.levelp.at.lesson0809.api.GoRestObjectTest">
           </class>
       </classes>
     </test>

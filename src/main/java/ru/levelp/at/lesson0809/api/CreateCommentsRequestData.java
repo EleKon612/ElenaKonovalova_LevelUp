@@ -20,7 +20,4 @@ public class CreateCommentsRequestData {
     private String name;
     private String email;
     private String body;
-
-    //@JsonProperty("post_id")
-    //private PostId postId;
 }

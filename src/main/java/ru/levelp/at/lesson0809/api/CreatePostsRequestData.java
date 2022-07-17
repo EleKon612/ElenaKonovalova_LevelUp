@@ -19,7 +19,4 @@ public class CreatePostsRequestData {
 
     private String title;
     private String body;
-
-    //@JsonProperty("user_id")
-    //private UserId userId;
 }
