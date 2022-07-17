@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework7 Allure Suite.xml">
+
+    <test name="Homework7 Allure Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson1011.cicd.GoRestObjectAllureTest">
+          </class>
+      </classes>
+    </test>
+
+</suite>

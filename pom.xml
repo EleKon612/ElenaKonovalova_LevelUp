@@ -28,26 +28,26 @@
         <bcpkix-jdk15on.version>1.70</bcpkix-jdk15on.version>
         <lombok.version>1.18.24</lombok.version>
         <rest-assured.version>5.1.1</rest-assured.version>
+        <allure.version>2.18.1</allure.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <!--<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>-->
 
         <!-- Project properties -->
         <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
-        <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
-        <homework2.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework2</homework2.suites.base.dir>
-        <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium/homework</homework.suites.base.dir>
-        <homework6.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0809/api</homework6.suites.base.dir>
+        <suites.base.dir>${test.resources.base.dir}/ru/levelp/at</suites.base.dir>
+        <!--<lesson.suite.base.dir>${suites.base.dir}/lesson0304/build/unit/testing/tools/suite/hooks/homework2</lesson.suite.base.dir>-->
     </properties>
 
     <profiles>
         <profile>
             <id>homework2-data-provider</id>
             <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0304/build/unit/testing/tools/suite/hooks</lesson.suite.base.dir>
                 <test.suite.name>homework2/HomeworkDataProviderSuite.xml</test.suite.name>
             </properties>
         </profile>
@@ -55,6 +55,7 @@
         <profile>
             <id>homework2-other-operations</id>
             <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0304/build/unit/testing/tools/suite/hooks</lesson.suite.base.dir>
                 <test.suite.name>homework2/HomeworkOtherOperationsSuite.xml</test.suite.name>
             </properties>
         </profile>
@@ -62,6 +63,7 @@
         <profile>
             <id>homework3-selenium</id>
             <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0507/selenium/homework</lesson.suite.base.dir>
                 <test.suite.name>Homework3SeleniumLocatorsSuite.xml</test.suite.name>
             </properties>
         </profile>
@@ -69,27 +71,35 @@
         <profile>
             <id>homework4-selenium</id>
             <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0507/selenium/homework</lesson.suite.base.dir>
                 <test.suite.name>Homework4SeleniumRefactorSuite.xml</test.suite.name>
             </properties>
         </profile>
 
         <profile>
             <id>homework5-selenium</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0507/selenium/homework</lesson.suite.base.dir>
                 <test.suite.name>Homework5SeleniumRefactorSuite.xml</test.suite.name>
             </properties>
         </profile>
 
         <profile>
             <id>homework6-api</id>
+            <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0809/api</lesson.suite.base.dir>
+                <test.suite.name>Homework6RestApiSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework7-allure</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>Homework6RestApiSuite.xml</test.suite.name>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson1011/cicd/api</lesson.suite.base.dir>
+                <test.suite.name>Homework7AllureSuite</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -182,6 +192,18 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -244,7 +266,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${homework.suites.base.dir}/${test.suite.name}</suiteXmlFile>
+                        <suiteXmlFile>${lesson.suite.base.dir}/${test.suite.name}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
