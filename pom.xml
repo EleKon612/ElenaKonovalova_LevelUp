@@ -41,7 +41,6 @@
         <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
         <homework2.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework2</homework2.suites.base.dir>
         <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium/homework</homework.suites.base.dir>
-        <homework6.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0809/api</homework6.suites.base.dir>
     </properties>
 
     <profiles>
@@ -75,6 +74,7 @@
 
         <profile>
             <id>homework5-selenium</id>
+
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -85,6 +85,7 @@
 
         <profile>
             <id>homework6-api</id>
+
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
