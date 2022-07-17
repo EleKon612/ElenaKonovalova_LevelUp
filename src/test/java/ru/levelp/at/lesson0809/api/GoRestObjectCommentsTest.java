@@ -1,5 +1,8 @@
 package ru.levelp.at.lesson0809.api;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.emptyOrNullString;
+
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -9,14 +12,11 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import java.util.Random;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
-import java.util.Random;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.emptyOrNullString;
 
 public class GoRestObjectCommentsTest {
 
@@ -26,8 +26,8 @@ public class GoRestObjectCommentsTest {
     private RequestSpecification requestSpecification;
     private ResponseSpecification responseSpecification;
 
-    @BeforeMethod
-    public void setUp() {
+    @BeforeSuite
+    public void beforeSuite() {
         requestSpecification = new RequestSpecBuilder()
                 .log(LogDetail.ALL)
                 .setContentType(ContentType.JSON)
@@ -70,7 +70,7 @@ public class GoRestObjectCommentsTest {
         var newEmail = faker.internet().emailAddress();
         var newBody = faker.chuckNorris().fact();
         var newCommentRequest = CreateCommentsRequestData.builder()
-                .post_id(newPostId)
+                .postId(newPostId)
                 .name(newName)
                 .email(newEmail)
                 .body(newBody)
@@ -115,7 +115,7 @@ public class GoRestObjectCommentsTest {
         var updateEmail = faker.internet().emailAddress();
         var updateBody = faker.chuckNorris().fact();
         var updateCommentRequest = CreateCommentsRequestData.builder()
-                .post_id(updatePostId)
+                .postId(updatePostId)
                 .name(updateName)
                 .email(updateEmail)
                 .body(updateBody)
@@ -124,7 +124,7 @@ public class GoRestObjectCommentsTest {
         given()
                 .body(updateCommentRequest)
                 .when()
-                .put(COMMENTS+ "/" + randomId)
+                .put(COMMENTS + "/" + randomId)
                 .then()
                 .statusCode(200)
                 .body("data.id", Matchers.equalTo(randomId))
@@ -140,7 +140,7 @@ public class GoRestObjectCommentsTest {
 
         given()
                 .when()
-                .delete(COMMENTS+ "/" + randomId)
+                .delete(COMMENTS + "/" + randomId)
                 .then()
                 .statusCode(200)
                 .body("code", Matchers.equalTo(204))

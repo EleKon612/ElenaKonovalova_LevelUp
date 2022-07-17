@@ -3,11 +3,6 @@ package ru.levelp.at.lesson0809.api;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.emptyOrNullString;
 
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Random;
-
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -17,8 +12,13 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Random;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class GoRestObjectUsersTest {
@@ -29,8 +29,8 @@ public class GoRestObjectUsersTest {
     private RequestSpecification requestSpecification;
     private ResponseSpecification responseSpecification;
 
-    @BeforeMethod
-    public void setUp() {
+    @BeforeSuite
+    public void beforeSuite() {
         //OAuth2Scheme auth = new OAuth2Scheme();
         //auth.setAccessToken("fb8bc7f65888c3dc5bdb863e609c4e7f5c7399b30c5e796906fd48fb6a99c515");
         requestSpecification = new RequestSpecBuilder()
@@ -135,7 +135,7 @@ public class GoRestObjectUsersTest {
         given()
                 .body(personRequest)
                 .when()
-                .put(USERS+ "/" + randomId)
+                .put(USERS + "/" + randomId)
                 .then()
                 .statusCode(200)
                 .body("data.id", Matchers.equalTo(randomId))
@@ -151,7 +151,7 @@ public class GoRestObjectUsersTest {
 
         given()
                 .when()
-                .delete(USERS+ "/" + randomId)
+                .delete(USERS + "/" + randomId)
                 .then()
                 .statusCode(200)
                 .body("code", Matchers.equalTo(204))

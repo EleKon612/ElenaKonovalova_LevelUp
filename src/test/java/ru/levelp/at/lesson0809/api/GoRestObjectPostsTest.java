@@ -1,5 +1,8 @@
 package ru.levelp.at.lesson0809.api;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.emptyOrNullString;
+
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -9,17 +12,11 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import java.util.Random;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Random;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.emptyOrNullString;
 
 public class GoRestObjectPostsTest {
 
@@ -29,8 +26,8 @@ public class GoRestObjectPostsTest {
     private RequestSpecification requestSpecification;
     private ResponseSpecification responseSpecification;
 
-    @BeforeMethod
-    public void setUp() {
+    @BeforeSuite
+    public void beforeSuite() {
         requestSpecification = new RequestSpecBuilder()
                 .log(LogDetail.ALL)
                 .setContentType(ContentType.JSON)
@@ -71,7 +68,7 @@ public class GoRestObjectPostsTest {
         var newTitle = faker.shakespeare().asYouLikeItQuote();
         var newBody = faker.chuckNorris().fact();
         var newPostRequest = CreatePostsRequestData.builder()
-                .user_id(newUserId)
+                .userId(newUserId)
                 .title(newTitle)
                 .body(newBody)
                 .build();
@@ -112,7 +109,7 @@ public class GoRestObjectPostsTest {
         var updatedTitle = faker.book().title();
         var updatedBody = faker.harryPotter().quote();
         var updatePostRequest = CreatePostsRequestData.builder()
-                .user_id(newUserId)
+                .userId(newUserId)
                 .title(updatedTitle)
                 .body(updatedBody)
                 .build();
@@ -120,7 +117,7 @@ public class GoRestObjectPostsTest {
         given()
                 .body(updatePostRequest)
                 .when()
-                .put(POSTS+ "/" + randomId)
+                .put(POSTS + "/" + randomId)
                 .then()
                 .statusCode(200)
                 .body("data.id", Matchers.equalTo(randomId))
@@ -135,7 +132,7 @@ public class GoRestObjectPostsTest {
 
         given()
                 .when()
-                .delete(POSTS+ "/" + randomId)
+                .delete(POSTS + "/" + randomId)
                 .then()
                 .statusCode(200)
                 .body("code", Matchers.equalTo(204))

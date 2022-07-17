@@ -27,6 +27,7 @@
         <jackson-databind.version>2.13.3</jackson-databind.version>
         <bcpkix-jdk15on.version>1.70</bcpkix-jdk15on.version>
         <lombok.version>1.18.24</lombok.version>
+        <rest-assured.version>5.1.1</rest-assured.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -40,7 +41,7 @@
         <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
         <homework2.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework2</homework2.suites.base.dir>
         <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium/homework</homework.suites.base.dir>
-        <rest-assured.version>5.1.1</rest-assured.version>
+        <homework6.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0809/api</homework6.suites.base.dir>
     </properties>
 
     <profiles>
@@ -75,10 +76,20 @@
         <profile>
             <id>homework5-selenium</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <test.suite.name>Homework5SeleniumRefactorSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework6-api</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <test.suite.name>Homework6RestApiSuite.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>

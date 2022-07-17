@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Homework6 Rest Api Suite.xml">
+
+    <test name="Homework6 Rest Api Suite">
+      <classes>
+          <class name="ru.levelp.at.lesson0809.api.GoRestObjectUsersTest">
+          </class>
+          <class name="ru.levelp.at.lesson0809.api.GoRestObjectPostsTest">
+          </class>
+          <class name="ru.levelp.at.lesson0809.api.GoRestObjectCommentsTest">
+          </class>
+      </classes>
+    </test>
+
+</suite>
