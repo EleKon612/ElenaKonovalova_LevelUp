@@ -42,10 +42,11 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
         insertPassword.sendKeys("Selenium2022" + Keys.ENTER);
 
         // Дождаться загрузки страницы "Входящие" убедиться, что она открылась, и нажать кнопку "Написать письмо"
-        WebElement newLetterButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//*[@class='compose-button__wrapper']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='/inbox/']")));
         driver.getCurrentUrl();
         assertTrue(driver.getCurrentUrl().contains("https://e.mail.ru/inbox"));
+        WebElement newLetterButton = driver.findElement(
+                By.xpath("//a[contains(@class, 'compose-button')]"));
         newLetterButton.click();
 
         // Переключиться на окно создания письма
@@ -53,7 +54,7 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
 
         // Ввести адресата, тему и тело письма
         WebElement insertReceivers = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//*[contains(@class, 'container--H9L5q')]")));
+                By.xpath("//*[@class='container--zU301']")));
         insertReceivers.sendKeys("elena.volnova@mail.ru");
         WebElement insertSubject = driver.findElement(By.xpath("//*[@name='Subject']"));
         insertSubject.sendKeys("New TestLetter Subject");
@@ -104,7 +105,8 @@ public class Exercise1MailruTest extends Homework3SeleniumBaseTest {
                 By.xpath("//a[@href='/sent/']")));
         openSent.click();
         wait.until(ExpectedConditions.urlContains("sent"));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='New TestLetter Subject']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[text()='New TestLetter Subject']")));
 
         // Verify, что письмо появилось в папке отправленные, открыть его и проверить содержимое
         assertTrue(driver.findElement(By.xpath("//*[text()='New TestLetter Subject']")).isDisplayed());

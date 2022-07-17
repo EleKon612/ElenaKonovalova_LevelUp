@@ -56,11 +56,18 @@
 
         <profile>
             <id>homework3-selenium</id>
+            <properties>
+                <test.suite.name>homework3/Homework3SeleniumLocatorsSuite.xml</test.suite.name>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework4-selenium</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>homework3/Homework3SeleniumLocatorsSuite.xml</test.suite.name>
+                <test.suite.name>homework4/Homework4SeleniumRefactorSuite.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
