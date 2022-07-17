@@ -1,19 +1,23 @@
-package ru.levelp.at.lesson1011.cicd;
+package ru.levelp.at.lesson1011.cicd.api;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.emptyOrNullString;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.Filter;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import org.hamcrest.Matchers;
@@ -35,12 +39,12 @@ public class GoRestObjectAllureTest {
 
     @BeforeSuite
     public void beforeSuite() {
-        //OAuth2Scheme auth = new OAuth2Scheme();
-        //auth.setAccessToken("fb8bc7f65888c3dc5bdb863e609c4e7f5c7399b30c5e796906fd48fb6a99c515");
+        List<Filter> filters = new ArrayList<>(RestAssured.filters());
+        filters.add(new AllureRestAssured());
+        RestAssured.filters(filters);
+
         requestSpecification = new RequestSpecBuilder()
                 .log(LogDetail.ALL)
-                //.setAuth(new BasicAuthScheme())
-                //.setAuth(auth)
                 .setContentType(ContentType.JSON)
                 .build()
                 .header(new Header("Authorization",
@@ -53,6 +57,7 @@ public class GoRestObjectAllureTest {
         RestAssured.baseURI = BASE_URL;
         RestAssured.requestSpecification = requestSpecification;
         RestAssured.responseSpecification = responseSpecification;
+
     }
 
     @Test

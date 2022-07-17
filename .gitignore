@@ -12,4 +12,6 @@ target
 .gradle
 build/*
 C:/
+allure-results
+.allure
 
