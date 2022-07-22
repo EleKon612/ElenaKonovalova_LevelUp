@@ -1,15 +1,21 @@
 package ru.levelp.at.lesson1011.cicd.ui.test;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
+@Epic("Тестирование Mailru")
+@Feature("Создание и отправка письма в папку Test")
 public class Exercise2StepsAllureTest extends Homework5BaseStepsAllureTest {
 
     @Test(description = "Тест на Mailru - Отправка нового письма в папку Test")
     @Severity(SeverityLevel.NORMAL)
     @Issue("BUG-1234")
+    @Story("Вход, создание письма, отправка письма в папку Test, выход")
     public void exercise2Test() {
         steps.openMailruMainPage(mailRuURL);
         steps.loginToMailru(username, password);
