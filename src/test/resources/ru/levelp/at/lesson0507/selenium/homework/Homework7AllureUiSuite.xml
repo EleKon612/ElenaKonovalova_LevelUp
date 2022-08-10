@@ -7,12 +7,12 @@
   
   <test name="Homework7 Rest UI Suite">
     <classes>
-      <!--<class name="ru.levelp.at.lesson1011.cicd.ui.test.Exercise1StepsAllureTest">
-      </class>-->
+      <class name="ru.levelp.at.lesson1011.cicd.ui.test.Exercise1StepsAllureTest">
+      </class>
       <class name="ru.levelp.at.lesson1011.cicd.ui.test.Exercise2StepsAllureTest">
       </class>
-      <!--<class name="ru.levelp.at.lesson1011.cicd.ui.test.Exercise3StepsAllureTest">
-      </class>-->
+      <class name="ru.levelp.at.lesson1011.cicd.ui.test.Exercise3StepsAllureTest">
+      </class>
     </classes>
   </test>
 </suite>
