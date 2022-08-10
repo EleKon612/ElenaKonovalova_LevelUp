@@ -6,10 +6,13 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import ru.levelp.at.lesson1011.cicd.ui.listener.AllureListener;
 
 @Epic("Тестирование Mailru")
 @Feature("Создание и отправка письма в папку Test")
+@Listeners({AllureListener.class})
 public class Exercise2StepsAllureTest extends Homework5BaseStepsAllureTest {
 
     @Test(description = "Тест на Mailru - Отправка нового письма в папку Test")
@@ -23,7 +26,7 @@ public class Exercise2StepsAllureTest extends Homework5BaseStepsAllureTest {
         steps.createAndFillNewLetter(receiver2, subject2, letterBody2);
         steps.sendLetter();
         steps.openSentPage(sentURL);
-        steps.assertLastLetterContainsCorrectData(receiver2, subject2, letterBody2);
+        steps.assertLastLetterContainsCorrectData(receiver1, subject2, letterBody2);
         steps.openTestFolderPage(testFolderURL);
         steps.assertLastLetterContainsCorrectData(receiverInbox2, subject2, letterBody2);
         steps.logoutFromMailru();

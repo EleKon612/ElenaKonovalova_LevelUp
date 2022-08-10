@@ -18,7 +18,8 @@
         <!-- Dependencies -->
         <checkstyle.version>10.2</checkstyle.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <testng.version>7.6.0</testng.version>
+        <testng.version>7.4.0</testng.version>
+        <jquery.version>3.5.1</jquery.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <selenium-java.version>4.2.1</selenium-java.version>
         <webdrivermanager.version>5.2.0</webdrivermanager.version>
@@ -28,15 +29,15 @@
         <bcpkix-jdk15on.version>1.70</bcpkix-jdk15on.version>
         <lombok.version>1.18.24</lombok.version>
         <rest-assured.version>5.1.1</rest-assured.version>
-        <allure.version>2.18.1</allure.version>
+        <allure.version>2.17.3</allure.version>
         <aspectj.version>1.9.7</aspectj.version>
-        <allure-maven.version>2.11.2</allure-maven.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <allure-maven.version>2.11.2</allure-maven.version>
         <!--<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>-->
 
         <!-- Project properties -->
@@ -113,13 +114,13 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
-            <!-- Исключить зависимость с vulnerability -->
+            <!-- Исключить зависимость с vulnerability
             <exclusions>
                 <exclusion>
                     <groupId>org.webjars</groupId>
                     <artifactId>jquery</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <dependency>

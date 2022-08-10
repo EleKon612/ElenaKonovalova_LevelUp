@@ -5,10 +5,13 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import ru.levelp.at.lesson1011.cicd.ui.listener.AllureListener;
 
 @Epic("Тестирование Mailru")
 @Feature("Создание, отправка письма, удаление")
+@Listeners({AllureListener.class})
 public class Exercise3StepsAllureTest extends Homework5BaseStepsAllureTest {
 
     @Test(description = "Тест на Mailru - Отправка нового письма себе с последующим удалением")

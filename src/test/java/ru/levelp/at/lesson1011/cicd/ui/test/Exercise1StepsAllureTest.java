@@ -7,10 +7,13 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import ru.levelp.at.lesson1011.cicd.ui.listener.AllureListener;
 
 @Epic("Тестирование Mailru")
 @Feature("Создание, сохранение и последующая отправка черновика")
+@Listeners({AllureListener.class})
 public class Exercise1StepsAllureTest extends Homework5BaseStepsAllureTest {
 
     @Test(description = "Тест на Mailru - Создание, сохранение и отправка черновика")
