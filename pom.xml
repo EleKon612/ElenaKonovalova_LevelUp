@@ -18,7 +18,8 @@
         <!-- Dependencies -->
         <checkstyle.version>10.2</checkstyle.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <testng.version>7.6.0</testng.version>
+        <testng.version>7.4.0</testng.version>
+        <jquery.version>3.5.1</jquery.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <selenium-java.version>4.2.1</selenium-java.version>
         <webdrivermanager.version>5.2.0</webdrivermanager.version>
@@ -28,18 +29,20 @@
         <bcpkix-jdk15on.version>1.70</bcpkix-jdk15on.version>
         <lombok.version>1.18.24</lombok.version>
         <rest-assured.version>5.1.1</rest-assured.version>
+        <allure.version>2.17.3</allure.version>
+        <aspectj.version>1.9.7</aspectj.version>
 
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <allure-maven.version>2.11.2</allure-maven.version>
         <!--<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>-->
 
         <!-- Project properties -->
         <test.resources.base.dir>${project.basedir}/src/test/resources</test.resources.base.dir>
-        <all.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks</all.suites.base.dir>
-        <homework2.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0304/build/unit/testing/tools/suite/hooks/homework2</homework2.suites.base.dir>
+        <suites.base.dir>${test.resources.base.dir}/ru/levelp/at</suites.base.dir>
         <homework.suites.base.dir>${test.resources.base.dir}/ru/levelp/at/lesson0507/selenium/homework</homework.suites.base.dir>
     </properties>
 
@@ -47,6 +50,7 @@
         <profile>
             <id>homework2-data-provider</id>
             <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0304/build/unit/testing/tools/suite/hooks</lesson.suite.base.dir>
                 <test.suite.name>homework2/HomeworkDataProviderSuite.xml</test.suite.name>
             </properties>
         </profile>
@@ -54,6 +58,7 @@
         <profile>
             <id>homework2-other-operations</id>
             <properties>
+                <lesson.suite.base.dir>${suites.base.dir}/lesson0304/build/unit/testing/tools/suite/hooks</lesson.suite.base.dir>
                 <test.suite.name>homework2/HomeworkOtherOperationsSuite.xml</test.suite.name>
             </properties>
         </profile>
@@ -74,10 +79,6 @@
 
         <profile>
             <id>homework5-selenium</id>
-
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <properties>
                 <test.suite.name>Homework5SeleniumRefactorSuite.xml</test.suite.name>
             </properties>
@@ -85,12 +86,18 @@
 
         <profile>
             <id>homework6-api</id>
+            <properties>
+                <test.suite.name>Homework6RestApiSuite.xml</test.suite.name>
+            </properties>
+        </profile>
 
+        <profile>
+            <id>homework7-allure-ui</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <test.suite.name>Homework6RestApiSuite.xml</test.suite.name>
+                <test.suite.name>Homework7AllureUISuite.xml</test.suite.name>
             </properties>
         </profile>
     </profiles>
@@ -107,13 +114,13 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
-            <!-- Исключить зависимость с vulnerability -->
+            <!-- Исключить зависимость с vulnerability
             <exclusions>
                 <exclusion>
                     <groupId>org.webjars</groupId>
                     <artifactId>jquery</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -183,6 +190,24 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${allure-maven.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -247,7 +272,17 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${homework.suites.base.dir}/${test.suite.name}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <!--<plugin>
@@ -258,5 +293,19 @@
 
         </plugins>
     </build>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.version}</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
